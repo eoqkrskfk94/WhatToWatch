@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WhatToWatch">
+        <activity android:name=".view.SecondActivity"></activity>
         <activity
             android:name=".view.SplashActivity"
             android:noHistory="true"
@@ -22,8 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.FirstActivity">
-        </activity>
+        <activity android:name=".view.FirstActivity"></activity>
     </application>
 
 </manifest>

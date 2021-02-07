@@ -6,10 +6,12 @@ import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.mobinity.whattowatch.MyApplication
 import com.mobinity.whattowatch.R
 import com.mobinity.whattowatch.databinding.ActivityFirstBinding
 import com.mobinity.whattowatch.response.RemoteService
+import com.mobinity.whattowatch.viewModel.FirstViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
@@ -25,8 +27,10 @@ class FirstActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val binding:ActivityFirstBinding = DataBindingUtil.setContentView(this, R.layout.activity_first)
-
+        binding.lifecycleOwner = this
+        binding.viewModel = FirstViewModel()
         setTextAnimation(binding)
+
 
 
 //        val retrofit = Retrofit.Builder()

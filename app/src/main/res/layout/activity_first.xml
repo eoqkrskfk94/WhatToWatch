@@ -3,6 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mobinity.whattowatch.viewModel.FirstViewModel" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -72,7 +80,8 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
                     android:padding="10dp"
-                    android:text="@string/dont_care"
+                    android:onClick="@{() -> viewModel.selectQuestion1(@string/dont_care, tvQuestion11)}"
+                    android:text="@string/dont_care_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
 
@@ -85,7 +94,8 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
                     android:padding="10dp"
-                    android:text="@string/action"
+                    android:onClick="@{() -> viewModel.selectQuestion1(@string/action, tvQuestion11)}"
+                    android:text="@string/action_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
 
@@ -98,7 +108,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
                     android:padding="10dp"
-                    android:text="@string/sf"
+                    android:text="@string/sf_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
 
@@ -111,7 +121,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
                     android:padding="10dp"
-                    android:text="@string/comedy"
+                    android:text="@string/comedy_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
 
@@ -124,7 +134,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
                     android:padding="10dp"
-                    android:text="@string/drama"
+                    android:text="@string/drama_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
 
@@ -137,7 +147,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
                     android:padding="10dp"
-                    android:text="@string/fantasy"
+                    android:text="@string/fantasy_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
 
@@ -151,7 +161,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
                     android:padding="10dp"
-                    android:text="@string/romance"
+                    android:text="@string/romance_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
 
@@ -164,7 +174,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
                     android:padding="10dp"
-                    android:text="@string/thriller"
+                    android:text="@string/thriller_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
 
@@ -177,7 +187,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
                     android:padding="10dp"
-                    android:text="@string/horror"
+                    android:text="@string/horror_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
 
@@ -190,7 +200,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
                     android:padding="10dp"
-                    android:text="@string/mystery"
+                    android:text="@string/mystery_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
 
@@ -203,7 +213,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
                     android:padding="10dp"
-                    android:text="@string/animation"
+                    android:text="@string/animation_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
 
@@ -216,7 +226,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
                     android:padding="10dp"
-                    android:text="@string/family"
+                    android:text="@string/family_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
 
@@ -229,7 +239,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
                     android:padding="10dp"
-                    android:text="@string/music"
+                    android:text="@string/music_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
 
@@ -242,7 +252,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
                     android:padding="10dp"
-                    android:text="@string/documentary"
+                    android:text="@string/documentary_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
 
