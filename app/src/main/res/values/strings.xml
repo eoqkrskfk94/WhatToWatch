@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">오늘의영화</string>
+
+    <string name="dont_care">상관없어요</string>
+
+    <!-- 영화 장르 -->
+    <string name="action">액션</string>
+    <string name="sf">SF</string>
+    <string name="drama">드라마</string>
+    <string name="comedy">코미디</string>
+    <string name="thriller">스릴러</string>
+    <string name="animation">애니메이션</string>
+    <string name="horror">공포</string>
+    <string name="fantasy">판타지</string>
+    <string name="romance">로멘스</string>
+    <string name="mystery">미스터리</string>
+    <string name="family">가족</string>
+    <string name="music">뮤지컬</string>
+    <string name="documentary">다큐멘터리</string>
+
 </resources>

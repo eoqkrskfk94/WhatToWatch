@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -10,22 +9,249 @@
         android:background="@color/main_background"
         tools:context=".view.MainActivity">
 
+
         <TextView
+            android:id="@+id/tv_current_question"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:autoSizeTextType="uniform"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            app:layout_constraintHeight_percent="0.1"
+            android:autoSizeTextType="uniform"
             android:fontFamily="@font/namu"
-            android:text="오늘의 당신은\n어떤 장르를 보고싶으신가요?"
+            android:text="1/5"
             android:textColor="@color/main_text_color"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.07"
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.1" />
+            app:layout_constraintVertical_bias="0.05" />
+
+        <TextView
+            android:id="@+id/tv_question1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/namu"
+            android:text="오늘의 당신은\n어떤 장르를 보고싶으신가요?"
+            android:textColor="@color/main_text_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.15" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:overScrollMode="never"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_question1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/tv_question1_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:padding="10dp"
+                    android:text="@string/dont_care"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_question1_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:padding="10dp"
+                    android:text="@string/action"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_question1_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:padding="10dp"
+                    android:text="@string/sf"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_question1_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:padding="10dp"
+                    android:text="@string/comedy"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_question1_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:padding="10dp"
+                    android:text="@string/drama"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_question1_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:padding="10dp"
+                    android:text="@string/fantasy"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+
+                <TextView
+                    android:id="@+id/tv_question1_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:padding="10dp"
+                    android:text="@string/romance"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_question1_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:padding="10dp"
+                    android:text="@string/thriller"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_question1_9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:padding="10dp"
+                    android:text="@string/horror"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_question1_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:padding="10dp"
+                    android:text="@string/mystery"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_question1_11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:padding="10dp"
+                    android:text="@string/animation"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_question1_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:padding="10dp"
+                    android:text="@string/family"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_question1_13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:padding="10dp"
+                    android:text="@string/music"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_question1_14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:padding="10dp"
+                    android:text="@string/documentary"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+
+            </LinearLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
