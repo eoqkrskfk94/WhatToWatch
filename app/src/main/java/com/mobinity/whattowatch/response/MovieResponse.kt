@@ -1,4 +1,6 @@
-package com.mobinity.whattowatch
+package com.mobinity.whattowatch.response
+
+import com.mobinity.whattowatch.model.MovieDb
 
 class MovieResponse {
     var page: Int = 0

@@ -1,4 +1,4 @@
-package com.mobinity.whattowatch
+package com.mobinity.whattowatch.model
 
 data class MovieItem(
     var lastBuildDate: String = "",

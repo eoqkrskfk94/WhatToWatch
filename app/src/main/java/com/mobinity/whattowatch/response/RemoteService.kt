@@ -1,6 +1,9 @@
-package com.mobinity.whattowatch
+package com.mobinity.whattowatch.response
 
+import com.mobinity.whattowatch.model.MovieItem
+import com.mobinity.whattowatch.response.MovieResponse
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
@@ -48,14 +51,23 @@ interface RemoteService {
 //            @Query("language") language: String
 //    ): Call
 
+
     @GET("discover/movie")
-    fun discoverMovie(
+    suspend fun discoverMovie(
             @Query("api_key") apiKey: String,
             @Query("language") language: String,
             @Query("with_genres") genre: String,
             @Query("with_original_language") region: String,
             @Query("page") page: Int
-    ):Call<MovieResponse>
+    ):Response<MovieResponse>
+
+
+    @GET("movie/{movie_id}/watch/providers")
+    suspend fun getMovieProviders(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String
+    ):Response<MovieProviderResponse>
+
 
 
 
