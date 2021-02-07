@@ -49,29 +49,46 @@ class MainActivity : AppCompatActivity() {
                 .baseUrl(RemoteService.MOVIE_DB_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-        val api = retrofit.create(RemoteService::class.java)
 
 
         val handler = CoroutineExceptionHandler { _, exception ->
             println("Caught $exception")
             Toast.makeText(this, "조회중 오류가 발생했습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
         }
-
-        job = MainScope().launch(handler) {
-            val retrofit = Retrofit.Builder()
-                    .baseUrl(RemoteService.MOVIE_DB_BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build()
-
-            val remoteService = retrofit.create(RemoteService::class.java)
-            val response = remoteService.discoverMovie(MyApplication.theMovieDataBaseKey, "ko-KR", "28", "ko", 1)
-
-            Log.d("TAG", "성공 : ${response.raw()}")
-            println(response.body()?.total_results)
-            for (item in response.body()?.results!!) {
-                println("영화이름: ${item.title}, id: ${item.id}")
-            }
-        }
+//
+//        job = MainScope().launch(handler) {
+//            val retrofit = Retrofit.Builder()
+//                    .baseUrl(RemoteService.MOVIE_DB_BASE_URL)
+//                    .addConverterFactory(GsonConverterFactory.create())
+//                    .build()
+//
+//            val remoteService = retrofit.create(RemoteService::class.java)
+//            val response = remoteService.discoverMovie(MyApplication.theMovieDataBaseKey, "ko-KR", "28", "ko", 1)
+//
+//            Log.d("TAG", "성공 : ${response.raw()}")
+//            println(response.body()?.total_results)
+//            for (item in response.body()?.results!!) {
+//                println("영화이름: ${item.title}, id: ${item.id}")
+//            }
+//        }
+//
+//        MainScope().launch(handler) {
+//            val retrofit = Retrofit.Builder()
+//                .baseUrl(RemoteService.MOVIE_DB_BASE_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build()
+//            val remoteService = retrofit.create(RemoteService::class.java)
+//            val response = remoteService.getMovieProviders(518068, MyApplication.theMovieDataBaseKey)
+//
+//            Log.d("TAG", "성공 : ${response.raw()}")
+//
+//            println(response.body()?.results?.KR?.link)
+//
+//            for (item in response.body()?.results?.KR?.flatrate!!) {
+//                println(item.provider_name)
+//                println(item.provider_id)
+//            }
+//        }
 
         MainScope().launch(handler) {
             val retrofit = Retrofit.Builder()
@@ -79,16 +96,14 @@ class MainActivity : AppCompatActivity() {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
             val remoteService = retrofit.create(RemoteService::class.java)
-            val response = remoteService.getMovieProviders(518068, MyApplication.theMovieDataBaseKey)
+            val response = remoteService.getMovieDetail(518068, MyApplication.theMovieDataBaseKey, "ko-KR")
 
             Log.d("TAG", "성공 : ${response.raw()}")
 
-            println(response.body()?.results?.KR?.link)
+            println(response.body()?.original_title)
 
-            for (item in response.body()?.results?.KR?.flatrate!!) {
-                println(item.provider_name)
-                println(item.logo_path)
-            }
+            for(genre in response.body()?.genres!!) println("${genre.id}  ${genre.name}")
+
         }
     }
 }

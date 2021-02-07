@@ -2,7 +2,7 @@ package com.mobinity.whattowatch.response
 
 import com.mobinity.whattowatch.model.MovieDb
 
-class MovieResponse {
+class DiscoverMovieResponse {
     var page: Int = 0
     var results: ArrayList<MovieDb> = ArrayList()
     var total_results: Int = 0
