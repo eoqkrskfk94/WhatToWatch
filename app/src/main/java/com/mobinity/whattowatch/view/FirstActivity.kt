@@ -3,11 +3,12 @@ package com.mobinity.whattowatch.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.mobinity.whattowatch.MyApplication
 import com.mobinity.whattowatch.R
-import com.mobinity.whattowatch.databinding.ActivityMainBinding
+import com.mobinity.whattowatch.databinding.ActivityFirstBinding
 import com.mobinity.whattowatch.response.RemoteService
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
@@ -16,16 +17,16 @@ import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainActivity : AppCompatActivity() {
+class FirstActivity : AppCompatActivity() {
 
     private lateinit var job: Job
-    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        val binding:ActivityFirstBinding = DataBindingUtil.setContentView(this, R.layout.activity_first)
 
+        setTextAnimation(binding)
 
 
 //        val retrofit = Retrofit.Builder()
@@ -113,4 +114,31 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+
+
+    private fun setTextAnimation(binding: ActivityFirstBinding){
+        val fadeIn = AnimationUtils.loadAnimation(applicationContext, R.anim.fadein)
+        val fadeIn2 = AnimationUtils.loadAnimation(applicationContext, R.anim.fadein)
+        fadeIn2.duration = 2500
+
+        binding.tvCurrentQuestion.startAnimation(fadeIn)
+        binding.tvQuestion1.startAnimation(fadeIn)
+
+        binding.tvQuestion11.startAnimation(fadeIn2)
+        binding.tvQuestion12.startAnimation(fadeIn2)
+        binding.tvQuestion13.startAnimation(fadeIn2)
+        binding.tvQuestion14.startAnimation(fadeIn2)
+        binding.tvQuestion15.startAnimation(fadeIn2)
+        binding.tvQuestion16.startAnimation(fadeIn2)
+        binding.tvQuestion17.startAnimation(fadeIn2)
+        binding.tvQuestion18.startAnimation(fadeIn2)
+        binding.tvQuestion19.startAnimation(fadeIn2)
+        binding.tvQuestion110.startAnimation(fadeIn2)
+        binding.tvQuestion111.startAnimation(fadeIn2)
+        binding.tvQuestion112.startAnimation(fadeIn2)
+        binding.tvQuestion113.startAnimation(fadeIn2)
+        binding.tvQuestion114.startAnimation(fadeIn2)
+
+    }
+
 }
