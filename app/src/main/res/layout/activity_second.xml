@@ -22,27 +22,27 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="20dp"
-            android:textSize="15dp"
             android:fontFamily="@font/namu"
-            android:text="전 질문으로 돌아가기"
+            android:onClick="@{() -> viewModel.goBackBtn(tvGoBack)}"
             android:gravity="center"
+            android:text="전 질문으로 돌아가기"
             android:textColor="@color/main_text_color"
+            android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHeight_percent="0.03"
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.02" />
+            app:layout_constraintVertical_bias="0.03" />
 
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="0.5dp"
-            app:layout_constraintStart_toStartOf="@id/tv_go_back"
-            app:layout_constraintEnd_toEndOf="@id/tv_go_back"
             android:background="@color/main_text_color"
-            app:layout_constraintTop_toBottomOf="@id/tv_go_back"/>
-
+            app:layout_constraintEnd_toEndOf="@id/tv_go_back"
+            app:layout_constraintStart_toStartOf="@id/tv_go_back"
+            app:layout_constraintTop_toBottomOf="@id/tv_go_back" />
 
 
         <TextView
@@ -64,14 +64,14 @@
             app:layout_constraintVertical_bias="0.08" />
 
         <TextView
-            android:id="@+id/tv_question1"
+            android:id="@+id/tv_question2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:autoSizeTextType="uniform"
             android:fontFamily="@font/namu"
-            android:text="오늘의 당신은\n어느 국가의 영화를 보고싶으신가요?"
+            android:text="오늘의 당신은 어느 국가의\n영화를 보고싶으신가요?"
             android:textColor="@color/main_text_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHeight_percent="0.1"
@@ -90,7 +90,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_question1">
+            app:layout_constraintTop_toBottomOf="@id/tv_question2">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -106,8 +106,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
+                    android:onClick="@{() -> viewModel.selectQuestion2(@string/dont_care, tvQuestion21)}"
                     android:padding="10dp"
-                    android:onClick="@{() -> viewModel.selectQuestion1(@string/dont_care, tvQuestion11)}"
                     android:text="@string/dont_care_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
@@ -120,8 +120,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
+                    android:onClick="@{() -> viewModel.selectQuestion2(@string/korea, tvQuestion22)}"
                     android:padding="10dp"
-                    android:onClick="@{() -> viewModel.selectQuestion1(@string/action, tvQuestion11)}"
                     android:text="@string/korea_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
@@ -134,10 +134,12 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
+                    android:onClick="@{() -> viewModel.selectQuestion2(@string/english, tvQuestion23)}"
                     android:padding="10dp"
-                    android:text="@string/usa_kr"
+                    android:text="@string/english_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
+
 
                 <TextView
                     android:id="@+id/tv_question2_4"
@@ -147,8 +149,9 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
+                    android:onClick="@{() -> viewModel.selectQuestion2(@string/japan, tvQuestion24)}"
                     android:padding="10dp"
-                    android:text="@string/england_kr"
+                    android:text="@string/japan_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
 
@@ -160,10 +163,12 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
+                    android:onClick="@{() -> viewModel.selectQuestion2(@string/france, tvQuestion25)}"
                     android:padding="10dp"
-                    android:text="@string/japan_kr"
+                    android:text="@string/france_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
+
 
                 <TextView
                     android:id="@+id/tv_question2_6"
@@ -173,35 +178,9 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/namu"
+                    android:onClick="@{() -> viewModel.selectQuestion2(@string/china, tvQuestion26)}"
                     android:padding="10dp"
-                    android:text="@string/france_kr"
-                    android:textColor="@color/main_text_color"
-                    android:textSize="30dp" />
-
-
-                <TextView
-                    android:id="@+id/tv_question2_7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/namu"
-                    android:padding="10dp"
-                    android:text="@string/china_kr"
-                    android:textColor="@color/main_text_color"
-                    android:textSize="30dp" />
-
-                <TextView
-                    android:id="@+id/tv_question2_8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/namu"
-                    android:padding="10dp"
-                    android:text="@string/hongkong_kr"
+                    android:text="@string/china_hongkong_kr"
                     android:textColor="@color/main_text_color"
                     android:textSize="30dp" />
 

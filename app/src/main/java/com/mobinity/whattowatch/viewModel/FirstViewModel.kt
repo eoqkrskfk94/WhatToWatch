@@ -1,5 +1,6 @@
 package com.mobinity.whattowatch.viewModel
 
+import android.app.Activity
 import android.content.Intent
 import android.view.View
 import android.widget.Toast
@@ -75,6 +76,7 @@ class FirstViewModel {
 
         var intent = Intent(view.context, SecondActivity::class.java)
         view.context.startActivity(intent)
+        (view.context as Activity).overridePendingTransition(R.anim.slide_in_right, R.anim.fix)
 
     }
 

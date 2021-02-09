@@ -123,7 +123,7 @@ class FirstActivity : AppCompatActivity() {
     private fun setTextAnimation(binding: ActivityFirstBinding){
         val fadeIn = AnimationUtils.loadAnimation(applicationContext, R.anim.fadein)
         val fadeIn2 = AnimationUtils.loadAnimation(applicationContext, R.anim.fadein)
-        fadeIn2.duration = 2500
+        fadeIn2.duration = 2000
 
         binding.tvCurrentQuestion.startAnimation(fadeIn)
         binding.tvQuestion1.startAnimation(fadeIn)
