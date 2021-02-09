@@ -16,13 +16,59 @@ class FirstViewModel {
         when(answer){
 
             view.context.getString(R.string.dont_care) -> {
-                Toast.makeText(view.context, "dont care", Toast.LENGTH_SHORT).show()
                 MyApplication.answer1 = view.context.getString(R.string.dont_care)
             }
 
             view.context.getString(R.string.action) -> {
-                Toast.makeText(view.context, "action", Toast.LENGTH_SHORT).show()
                 MyApplication.answer1 = view.context.getString(R.string.action)
+            }
+
+            view.context.getString(R.string.sf) -> {
+                MyApplication.answer1 = view.context.getString(R.string.sf)
+            }
+
+            view.context.getString(R.string.drama) -> {
+                MyApplication.answer1 = view.context.getString(R.string.drama)
+            }
+
+            view.context.getString(R.string.thriller) -> {
+                MyApplication.answer1 = view.context.getString(R.string.thriller)
+            }
+
+            view.context.getString(R.string.animation) -> {
+                MyApplication.answer1 = view.context.getString(R.string.animation)
+            }
+
+            view.context.getString(R.string.horror) -> {
+                MyApplication.answer1 = view.context.getString(R.string.horror)
+            }
+
+            view.context.getString(R.string.fantasy) -> {
+                MyApplication.answer1 = view.context.getString(R.string.fantasy)
+            }
+
+            view.context.getString(R.string.romance) -> {
+                MyApplication.answer1 = view.context.getString(R.string.romance)
+            }
+
+            view.context.getString(R.string.mystery) -> {
+                MyApplication.answer1 = view.context.getString(R.string.mystery)
+            }
+
+            view.context.getString(R.string.family) -> {
+                MyApplication.answer1 = view.context.getString(R.string.family)
+            }
+
+            view.context.getString(R.string.music) -> {
+                MyApplication.answer1 = view.context.getString(R.string.music)
+            }
+
+            view.context.getString(R.string.family) -> {
+                MyApplication.answer1 = view.context.getString(R.string.family)
+            }
+
+            view.context.getString(R.string.family) -> {
+                MyApplication.answer1 = view.context.getString(R.string.family)
             }
 
         }

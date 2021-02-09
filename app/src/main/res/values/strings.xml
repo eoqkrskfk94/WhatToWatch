@@ -34,4 +34,23 @@
     <string name="music">10402</string>
     <string name="documentary">99</string>
 
+
+    <!-- 영화 국가 (한국어) -->
+    <string name="korea_kr">한국</string>
+    <string name="usa_kr">미국</string>
+    <string name="japan_kr">일본</string>
+    <string name="england_kr">영국</string>
+    <string name="france_kr">프랑스</string>
+    <string name="china_kr">중국</string>
+    <string name="hongkong_kr">홍콩</string>
+
+    <!-- 영화 국가 -->
+    <string name="korea">한국</string>
+    <string name="usa">미국</string>
+    <string name="japan">일본</string>
+    <string name="england">영국</string>
+    <string name="france">프랑스</string>
+    <string name="china">중국</string>
+    <string name="hongkong">홍콩</string>
+
 </resources>
