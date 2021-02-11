@@ -1,9 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.ThirdActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mobinity.whattowatch.viewModel.ThirdViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_background"
+        tools:context=".view.ThirdActivity">
+
+        <TextView
+            android:id="@+id/tv_go_back"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/namu"
+            android:onClick="@{() -> viewModel.goBackBtn(tvGoBack)}"
+            android:gravity="center"
+            android:text="전 질문으로 돌아가기"
+            android:textColor="@color/main_text_color"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.03" />
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="@color/main_text_color"
+            app:layout_constraintEnd_toEndOf="@id/tv_go_back"
+            app:layout_constraintStart_toStartOf="@id/tv_go_back"
+            app:layout_constraintTop_toBottomOf="@id/tv_go_back" />
+
+
+        <TextView
+            android:id="@+id/tv_current_question"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/namu"
+            android:text="3/5"
+            android:textColor="@color/main_text_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.07"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.08" />
+
+        <TextView
+            android:id="@+id/tv_question3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/namu"
+            android:text="오늘의 당신은 언제 개봉한\n영화를 보고싶으신가요?"
+            android:textColor="@color/main_text_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.18" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_question3">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_question3_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:onClick="@{() -> viewModel.selectQuestion3(@string/dont_care, tvQuestion31)}"
+                    android:padding="10dp"
+                    android:text="@string/dont_care_kr"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+
+                <TextView
+                    android:id="@+id/tv_question3_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:onClick="@{() -> viewModel.selectQuestion3(@string/date2020, tvQuestion32)}"
+                    android:padding="10dp"
+                    android:text="@string/date2020"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_question3_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:onClick="@{() -> viewModel.selectQuestion3(@string/date2015, tvQuestion33)}"
+                    android:padding="10dp"
+                    android:text="@string/date2015"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_question3_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:onClick="@{() -> viewModel.selectQuestion3(@string/date2010, tvQuestion34)}"
+                    android:padding="10dp"
+                    android:text="@string/date2010"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+
+                <TextView
+                    android:id="@+id/tv_question3_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:onClick="@{() -> viewModel.selectQuestion3(@string/date2005, tvQuestion35)}"
+                    android:padding="10dp"
+                    android:text="@string/date2005"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_question3_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:onClick="@{() -> viewModel.selectQuestion3(@string/date2000, tvQuestion36)}"
+                    android:padding="10dp"
+                    android:text="@string/date2000"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+
+                <TextView
+                    android:id="@+id/tv_question3_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:onClick="@{() -> viewModel.selectQuestion3(@string/date2000before, tvQuestion37)}"
+                    android:padding="10dp"
+                    android:text="@string/date2000before"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+
+            </LinearLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

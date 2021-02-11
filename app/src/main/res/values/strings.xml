@@ -50,4 +50,13 @@
     <string name="france">fr</string>
     <string name="china">zh</string>
 
+    <!-- 영화 개봉 날짜 -->
+    <string name="date2020">2020 ~ 현재</string>
+    <string name="date2015">2015 ~ 2019</string>
+    <string name="date2010">2010 ~ 2014</string>
+    <string name="date2005">2005 ~ 2009</string>
+    <string name="date2000">2000 ~ 2004</string>
+    <string name="date2000before">~ 1999</string>
+
+
 </resources>
