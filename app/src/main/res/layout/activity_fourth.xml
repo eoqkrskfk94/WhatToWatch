@@ -1,9 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.FourthActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mobinity.whattowatch.viewModel.FourthViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_background"
+        tools:context=".view.FourthActivity">
+
+        <TextView
+            android:id="@+id/tv_go_back"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/namu"
+            android:onClick="@{() -> viewModel.goBackBtn(tvGoBack)}"
+            android:gravity="center"
+            android:text="전 질문으로 돌아가기"
+            android:textColor="@color/main_text_color"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.03" />
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="@color/main_text_color"
+            app:layout_constraintEnd_toEndOf="@id/tv_go_back"
+            app:layout_constraintStart_toStartOf="@id/tv_go_back"
+            app:layout_constraintTop_toBottomOf="@id/tv_go_back" />
+
+
+        <TextView
+            android:id="@+id/tv_current_question"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/namu"
+            android:text="4/5"
+            android:textColor="@color/main_text_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.07"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.08" />
+
+        <TextView
+            android:id="@+id/tv_question4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/namu"
+            android:text="오늘의 당신은 어느 서비스를\n통해 보고싶으신가요?"
+            android:textColor="@color/main_text_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.18" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_question4">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_question4_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:onClick="@{() -> viewModel.selectQuestion4(@string/dont_care, tvQuestion41)}"
+                    android:padding="10dp"
+                    android:text="@string/dont_care_kr"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+
+                <TextView
+                    android:id="@+id/tv_question4_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:onClick="@{() -> viewModel.selectQuestion4(@string/netflix, tvQuestion42)}"
+                    android:padding="10dp"
+                    android:text="@string/netflix_kr"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_question4_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:onClick="@{() -> viewModel.selectQuestion4(@string/watcha, tvQuestion43)}"
+                    android:padding="10dp"
+                    android:text="@string/watcha_kr"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/tv_question4_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/namu"
+                    android:onClick="@{() -> viewModel.selectQuestion4(@string/wavve, tvQuestion44)}"
+                    android:padding="10dp"
+                    android:text="@string/wavve_kr"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="30dp" />
+
+
+            </LinearLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

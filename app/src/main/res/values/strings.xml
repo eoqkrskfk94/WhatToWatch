@@ -58,5 +58,15 @@
     <string name="date2000">2000 ~ 2004</string>
     <string name="date2000before">~ 1999</string>
 
+    <!-- 영화 서비스 (한국어) -->
+    <string name="netflix_kr">넷플릭스</string>
+    <string name="watcha_kr">왓챠</string>
+    <string name="wavve_kr">웨이브</string>
+
+    <!-- 영화 서비스 -->
+    <string name="netflix">8</string>
+    <string name="watcha">97</string>
+    <string name="wavve">356</string>
+
 
 </resources>
