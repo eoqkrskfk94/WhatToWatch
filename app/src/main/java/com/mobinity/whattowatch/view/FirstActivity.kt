@@ -11,6 +11,7 @@ import com.mobinity.whattowatch.MyApplication
 import com.mobinity.whattowatch.R
 import com.mobinity.whattowatch.databinding.ActivityFirstBinding
 import com.mobinity.whattowatch.response.RemoteService
+import com.mobinity.whattowatch.util.BackPressCloseHandler
 import com.mobinity.whattowatch.viewModel.FirstViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
@@ -22,6 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class FirstActivity : AppCompatActivity() {
 
     private lateinit var job: Job
+    private lateinit var backPressCloseHandler: BackPressCloseHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +32,9 @@ class FirstActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = FirstViewModel()
         setTextAnimation(binding)
+
+        backPressCloseHandler =
+            BackPressCloseHandler(this)
 
 
 
@@ -143,6 +148,10 @@ class FirstActivity : AppCompatActivity() {
         binding.tvQuestion113.startAnimation(fadeIn2)
         binding.tvQuestion114.startAnimation(fadeIn2)
 
+    }
+
+    override fun onBackPressed() {
+        backPressCloseHandler.onBackPressed()
     }
 
 }
