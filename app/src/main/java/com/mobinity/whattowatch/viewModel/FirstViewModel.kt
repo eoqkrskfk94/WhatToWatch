@@ -17,7 +17,7 @@ class FirstViewModel {
         when(answer){
 
             view.context.getString(R.string.dont_care) -> {
-                MyApplication.answer1 = view.context.getString(R.string.dont_care)
+                MyApplication.answer1 = null
             }
 
             view.context.getString(R.string.action) -> {

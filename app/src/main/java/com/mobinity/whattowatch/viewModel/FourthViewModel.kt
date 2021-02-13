@@ -15,7 +15,7 @@ class FourthViewModel {
         when (answer) {
 
             view.context.getString(R.string.dont_care) -> {
-                MyApplication.answer4 = view.context.getString(R.string.dont_care)
+                MyApplication.answer4 = null
             }
 
             view.context.getString(R.string.netflix) -> {

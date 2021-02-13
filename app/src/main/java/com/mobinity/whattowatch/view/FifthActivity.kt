@@ -189,9 +189,11 @@ class FifthActivity : AppCompatActivity() {
         discoverMovieJob = MainScope().launch(handler) {
 
 
-            val result = getDiscoverMovieResultCount(retrofit, handler)
+            val result = getDiscoverMovieResultCount(retrofit)
 
             println(result)
+
+            getDiscoverMovieResultList(result, retrofit)
 
 
 
@@ -203,16 +205,24 @@ class FifthActivity : AppCompatActivity() {
 
     }
 
-    private suspend fun getDiscoverMovieResultCount(retrofit: Retrofit, handler: CoroutineExceptionHandler) = withContext(currentCoroutineContext()){
+    private suspend fun getDiscoverMovieResultCount(retrofit: Retrofit) = withContext(currentCoroutineContext()){
 
         val remoteService = retrofit.create(RemoteService::class.java)
-        val response = remoteService.discoverMovie(MyApplication.theMovieDataBaseKey, "ko-KR", "28", "ko", 1)
+        //val response = remoteService.discoverMovie(MyApplication.theMovieDataBaseKey, "ko-KR", MyApplication.answer1, MyApplication.answer2, MyApplication.answer4, null)
+        val response = remoteService.discoverMovie(MyApplication.theMovieDataBaseKey, "ko-KR", MyApplication.answer1, MyApplication.answer2, MyApplication.answer4, null)
 
         Log.d("TAG", "성공 : ${response.raw()}")
-//        println(response.body()?.total_results)
-//        println(response.body()?.total_pages)
 
-        return@withContext "dff"
+        return@withContext listOf(response.body()?.total_results, response.body()?.total_pages)
+
+    }
+
+    private suspend fun getDiscoverMovieResultList(resultCount: List<Int?>, retrofit: Retrofit) = withContext(currentCoroutineContext()){
+
+        val remoteService = retrofit.create(RemoteService::class.java)
+        //val response = remoteService.discoverMovie(MyApplication.theMovieDataBaseKey, "ko-KR", "28", "ko", 1)
+
+        //Log.d("TAG", "성공 : ${response.raw()}")
 
     }
 

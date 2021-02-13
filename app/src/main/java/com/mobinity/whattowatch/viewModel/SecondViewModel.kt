@@ -15,7 +15,7 @@ class SecondViewModel {
         when (answer) {
 
             view.context.getString(R.string.dont_care) -> {
-                MyApplication.answer2 = view.context.getString(R.string.dont_care)
+                MyApplication.answer2 = null
             }
 
             view.context.getString(R.string.korea) -> {

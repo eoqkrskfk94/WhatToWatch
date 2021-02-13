@@ -55,9 +55,10 @@ interface RemoteService {
     suspend fun discoverMovie(
             @Query("api_key") apiKey: String,
             @Query("language") language: String,
-            @Query("with_genres") genre: String,
-            @Query("with_original_language") region: String,
-            @Query("page") page: Int
+            @Query("with_genres") genre: String?,
+            @Query("with_original_language") region: String?,
+            @Query("with_watch_providers") providers: String?,
+            @Query("page") page: Int?
     ):Response<DiscoverMovieResponse>
 
 

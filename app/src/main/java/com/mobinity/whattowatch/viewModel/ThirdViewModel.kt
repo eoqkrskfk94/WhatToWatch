@@ -15,7 +15,7 @@ class ThirdViewModel {
         when (answer) {
 
             view.context.getString(R.string.dont_care) -> {
-                MyApplication.answer3 = view.context.getString(R.string.dont_care)
+                MyApplication.answer3 = null
             }
 
             view.context.getString(R.string.date2020) -> {
