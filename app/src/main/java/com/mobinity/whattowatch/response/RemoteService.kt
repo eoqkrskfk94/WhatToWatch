@@ -58,6 +58,7 @@ interface RemoteService {
             @Query("with_genres") genre: String?,
             @Query("with_original_language") region: String?,
             @Query("with_watch_providers") providers: String?,
+            @Query("year") year: Int?,
             @Query("page") page: Int?
     ):Response<DiscoverMovieResponse>
 
