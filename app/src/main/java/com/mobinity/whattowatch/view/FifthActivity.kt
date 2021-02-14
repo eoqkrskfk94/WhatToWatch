@@ -1,21 +1,21 @@
 package com.mobinity.whattowatch.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.animation.AnimationUtils
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobinity.whattowatch.MyApplication
 import com.mobinity.whattowatch.R
+import com.mobinity.whattowatch.adapter.MovieAdapter
 import com.mobinity.whattowatch.databinding.ActivityFifthBinding
+import com.mobinity.whattowatch.model.MovieDb
 import com.mobinity.whattowatch.response.RemoteService
 import com.mobinity.whattowatch.viewModel.FifthViewModel
 import kotlinx.coroutines.*
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class FifthActivity : AppCompatActivity() {
 
@@ -23,10 +23,12 @@ class FifthActivity : AppCompatActivity() {
     private lateinit var handler: CoroutineExceptionHandler
     private lateinit var discoverMovieJob: Job
     private lateinit var viewModel: FifthViewModel
+    private lateinit var movieAdapter: MovieAdapter
+    private lateinit var binding: ActivityFifthBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityFifthBinding = DataBindingUtil.setContentView(this, R.layout.activity_fifth)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_fifth)
         binding.lifecycleOwner = this
         viewModel = FifthViewModel()
         binding.viewModel = viewModel
@@ -36,10 +38,10 @@ class FifthActivity : AppCompatActivity() {
 
         setSelectedTypeText(binding)
         setTextAnimation(binding)
+        setRecyclerView(binding)
 
 
         discoverMovie(retrofitService, handler)
-
 
 
 //        val retrofit = Retrofit.Builder()
@@ -64,8 +66,6 @@ class FifthActivity : AppCompatActivity() {
 //                Log.d("TAG", "실패 : $t")
 //            }
 //        })
-
-
 
 
 //
@@ -106,7 +106,8 @@ class FifthActivity : AppCompatActivity() {
 
     }
 
-    private fun setSelectedTypeText(binding: ActivityFifthBinding){
+
+    private fun setSelectedTypeText(binding: ActivityFifthBinding) {
 
         var answer1 = ""
         var answer2 = ""
@@ -116,7 +117,7 @@ class FifthActivity : AppCompatActivity() {
         println(MyApplication.answer1)
         println()
 
-        when(MyApplication.answer1.toString()){
+        when (MyApplication.answer1.toString()) {
 
             getString(R.string.action) -> answer1 = "액션 · "
             getString(R.string.drama) -> answer1 = "드라마 · "
@@ -134,7 +135,7 @@ class FifthActivity : AppCompatActivity() {
 
         }
 
-        when(MyApplication.answer2){
+        when (MyApplication.answer2) {
 
             getString(R.string.korea) -> answer2 = "한국 · "
             getString(R.string.english) -> answer2 = "미국/영국 · "
@@ -144,7 +145,7 @@ class FifthActivity : AppCompatActivity() {
 
         }
 
-        when(MyApplication.answer3){
+        when (MyApplication.answer3) {
 
             getString(R.string.date2020) -> answer3 = "2020 ~ 현재 · "
             getString(R.string.date2015) -> answer3 = "2015 ~ 2019 · "
@@ -155,7 +156,7 @@ class FifthActivity : AppCompatActivity() {
 
         }
 
-        when(MyApplication.answer4){
+        when (MyApplication.answer4) {
 
             getString(R.string.netflix) -> answer4 = "넷플릭스"
             getString(R.string.watcha) -> answer4 = "왓챠"
@@ -171,7 +172,7 @@ class FifthActivity : AppCompatActivity() {
     }
 
 
-    private fun setTextAnimation(binding: ActivityFifthBinding){
+    private fun setTextAnimation(binding: ActivityFifthBinding) {
         val fadeIn = AnimationUtils.loadAnimation(applicationContext, R.anim.fadein)
         val fadeIn2 = AnimationUtils.loadAnimation(applicationContext, R.anim.fadein)
         fadeIn.duration = 2000
@@ -184,7 +185,29 @@ class FifthActivity : AppCompatActivity() {
 
     }
 
-    private fun discoverMovie(retrofit: Retrofit, handler: CoroutineExceptionHandler){
+    private fun setRecyclerView(binding: ActivityFifthBinding) {
+        movieAdapter = MovieAdapter(
+            this,
+            ArrayList<MovieDb>()
+        ) {
+
+
+        }
+
+        binding.rvMovieList.adapter = movieAdapter
+        binding.rvMovieList.layoutManager = LinearLayoutManager(this)
+
+        val horizontalLayout = LinearLayoutManager(
+            this,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+
+        binding.rvMovieList.layoutManager = horizontalLayout
+
+    }
+
+    private fun discoverMovie(retrofit: Retrofit, handler: CoroutineExceptionHandler) {
 
         discoverMovieJob = MainScope().launch(handler) {
 
@@ -197,9 +220,9 @@ class FifthActivity : AppCompatActivity() {
 
             println(result1)
 
+
+
             getDiscoverMovieResultList(result1, retrofit)
-
-
 
 
         }
@@ -207,36 +230,64 @@ class FifthActivity : AppCompatActivity() {
 
     }
 
-    private suspend fun getDiscoverMovieResultCount(retrofit: Retrofit) = withContext(currentCoroutineContext()){
+    private suspend fun getDiscoverMovieResultCount(retrofit: Retrofit) =
+        withContext(currentCoroutineContext()) {
 
-        val remoteService = retrofit.create(RemoteService::class.java)
+            val remoteService = retrofit.create(RemoteService::class.java)
 
 
-        val year = viewModel.getRandomYear(baseContext)?.toInt()
+            val year = viewModel.getRandomYear(baseContext)?.toInt()
 
-        val response = remoteService.discoverMovie(MyApplication.theMovieDataBaseKey, "ko-KR", MyApplication.answer1, MyApplication.answer2, MyApplication.answer4, year,null)
+            val response = remoteService.discoverMovie(
+                MyApplication.theMovieDataBaseKey,
+                "ko-KR",
+                MyApplication.answer1,
+                MyApplication.answer2,
+                MyApplication.answer4,
+                year,
+                null
+            )
 
 //        Log.d("TAG", "성공 : ${response.raw()} $year")
 //
 
-        return@withContext listOf(response.body()?.total_results, response.body()?.total_pages, year)
+            return@withContext listOf(
+                response.body()?.total_results,
+                response.body()?.total_pages,
+                year
+            )
 
-    }
-
-    private suspend fun getDiscoverMovieResultList(resultCount: List<Int?>, retrofit: Retrofit) = withContext(currentCoroutineContext()){
-
-        val remoteService = retrofit.create(RemoteService::class.java)
-
-        val response = remoteService.discoverMovie(MyApplication.theMovieDataBaseKey, "ko-KR", MyApplication.answer1, MyApplication.answer2, MyApplication.answer4, resultCount[2],null)
-
-        Log.d("TAG", "성공 : ${response.raw()}")
-
-        for (item in response.body()?.results!!) {
-            println("영화이름: ${item.title}, id: ${item.id}")
         }
 
-    }
+    private suspend fun getDiscoverMovieResultList(resultCount: List<Int?>, retrofit: Retrofit) =
+        withContext(currentCoroutineContext()) {
 
+            val remoteService = retrofit.create(RemoteService::class.java)
+
+            val response = remoteService.discoverMovie(
+                MyApplication.theMovieDataBaseKey,
+                "ko-KR",
+                MyApplication.answer1,
+                MyApplication.answer2,
+                MyApplication.answer4,
+                resultCount[2],
+                null
+            )
+
+            Log.d("TAG", "성공 : ${response.raw()}")
+
+            val sample = response.body()?.results
+
+            movieAdapter.setData(sample!!)
+            binding.rvMovieList.adapter = movieAdapter
+
+
+
+            for (item in response.body()?.results!!) {
+                println("영화이름: ${item.title}, id: ${item.id}, poster: ${item.poster_path}")
+            }
+
+        }
 
 
     override fun finish() {

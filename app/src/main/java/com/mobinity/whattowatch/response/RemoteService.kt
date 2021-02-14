@@ -13,6 +13,7 @@ interface RemoteService {
     companion object{
         var BASE_URL = "https://openapi.naver.com/"
         var MOVIE_DB_BASE_URL = "https://api.themoviedb.org/3/"
+        var MOVIE_POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500"
 
     }
 

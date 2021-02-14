@@ -64,12 +64,12 @@ class FirstViewModel {
                 MyApplication.answer1 = view.context.getString(R.string.music)
             }
 
-            view.context.getString(R.string.family) -> {
-                MyApplication.answer1 = view.context.getString(R.string.family)
+            view.context.getString(R.string.comedy) -> {
+                MyApplication.answer1 = view.context.getString(R.string.comedy)
             }
 
-            view.context.getString(R.string.family) -> {
-                MyApplication.answer1 = view.context.getString(R.string.family)
+            view.context.getString(R.string.documentary) -> {
+                MyApplication.answer1 = view.context.getString(R.string.documentary)
             }
 
         }
