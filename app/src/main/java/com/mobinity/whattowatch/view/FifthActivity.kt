@@ -16,6 +16,7 @@ import com.mobinity.whattowatch.response.RemoteService
 import com.mobinity.whattowatch.viewModel.FifthViewModel
 import kotlinx.coroutines.*
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class FifthActivity : AppCompatActivity() {
 
@@ -68,24 +69,24 @@ class FifthActivity : AppCompatActivity() {
 //        })
 
 
-//
-//        MainScope().launch(handler) {
-//            val retrofit = Retrofit.Builder()
-//                .baseUrl(RemoteService.MOVIE_DB_BASE_URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build()
-//            val remoteService = retrofit.create(RemoteService::class.java)
-//            val response = remoteService.getMovieProviders(518068, MyApplication.theMovieDataBaseKey)
-//
-//            Log.d("TAG", "성공 : ${response.raw()}")
-//
-//            println(response.body()?.results?.KR?.link)
-//
-//            for (item in response.body()?.results?.KR?.flatrate!!) {
-//                println(item.provider_name)
-//                println(item.provider_id)
-//            }
-//        }
+
+        MainScope().launch(handler) {
+            val retrofit = Retrofit.Builder()
+                .baseUrl(RemoteService.MOVIE_DB_BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+            val remoteService = retrofit.create(RemoteService::class.java)
+            val response = remoteService.getMovieProviders(518068, MyApplication.theMovieDataBaseKey)
+
+            Log.d("TAG", "성공 : ${response.raw()}")
+
+            println(response.body()?.results?.KR?.link)
+
+            for (item in response.body()?.results?.KR?.flatrate!!) {
+                println(item.provider_name)
+                println(item.provider_id)
+            }
+        }
 
 //        MainScope().launch(handler) {
 //            val retrofit = Retrofit.Builder()
@@ -243,6 +244,7 @@ class FifthActivity : AppCompatActivity() {
                 "ko-KR",
                 MyApplication.answer1,
                 MyApplication.answer2,
+                "KR",
                 MyApplication.answer4,
                 year,
                 null
@@ -269,6 +271,7 @@ class FifthActivity : AppCompatActivity() {
                 "ko-KR",
                 MyApplication.answer1,
                 MyApplication.answer2,
+                "KR",
                 MyApplication.answer4,
                 resultCount[2],
                 null
@@ -280,7 +283,6 @@ class FifthActivity : AppCompatActivity() {
 
             movieAdapter.setData(sample!!)
             binding.rvMovieList.adapter = movieAdapter
-
 
 
             for (item in response.body()?.results!!) {

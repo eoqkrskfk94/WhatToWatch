@@ -23,8 +23,8 @@
             android:layout_height="0dp"
             android:layout_marginStart="20dp"
             android:fontFamily="@font/namu"
-            android:onClick="@{() -> viewModel.goBackBtn(tvGoBack)}"
             android:gravity="center"
+            android:onClick="@{() -> viewModel.goBackBtn(tvGoBack)}"
             android:text=" 다시  하기 "
             android:textColor="@color/main_text_color"
             android:textSize="15dp"
@@ -88,13 +88,13 @@
             android:layout_height="25dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:textColor="@color/main_text_color"
-            android:fontFamily="@font/namu"
             android:autoSizeTextType="uniform"
+            android:fontFamily="@font/namu"
             android:text="액션 · 한국 · 2015 ~ 2020 · 넷플릭스"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/main_text_color"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_question5"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_question5" />
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -103,37 +103,36 @@
             android:layout_height="0dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
+            android:overScrollMode="never"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintHeight_percent="0.6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_selected_types"
             app:layout_constraintVertical_bias="0.15" />
 
 
         <!--        <androidx.core.widget.NestedScrollView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:layout_marginBottom="10dp"-->
-<!--            android:overScrollMode="never"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/tv_selected_types">-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:layout_marginTop="5dp"-->
+        <!--            android:layout_marginBottom="10dp"-->
+        <!--            android:overScrollMode="never"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/tv_selected_types">-->
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:orientation="vertical">-->
-
-
+        <!--            <LinearLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:orientation="vertical">-->
 
 
-<!--            </LinearLayout>-->
+        <!--            </LinearLayout>-->
 
 
-<!--        </androidx.core.widget.NestedScrollView>-->
+        <!--        </androidx.core.widget.NestedScrollView>-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
