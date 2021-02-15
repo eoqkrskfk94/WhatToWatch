@@ -68,13 +68,13 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="50dp"
             android:autoSizeTextType="uniform"
             android:fontFamily="@font/namu"
-            android:text="오늘 이 영화는 어떠신가요?"
+            android:text="오늘 이 영화는 어떠신가요"
             android:textColor="@color/main_text_color"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHeight_percent="0.08"
+            app:layout_constraintHeight_percent="0.06"
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -97,22 +97,48 @@
             app:layout_constraintTop_toBottomOf="@id/tv_question5" />
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_movie_list"
+        <ImageView
+            android:id="@+id/iv_movie_poster"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
-            android:overScrollMode="never"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_selected_types"
-            app:layout_constraintVertical_bias="0.15" />
+            app:layout_constraintVertical_bias="0.15"
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintWidth_percent="0.7" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lav_loading"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:lottie_rawRes="@raw/loading"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true"
+            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintStart_toStartOf="@id/iv_movie_poster"
+            app:layout_constraintEnd_toEndOf="@id/iv_movie_poster"
+            app:layout_constraintTop_toTopOf="@id/iv_movie_poster"
+            app:layout_constraintBottom_toBottomOf="@id/iv_movie_poster" />
+
+        <TextView
+            android:id="@+id/tv_movie_decription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="영화 이름 2019"
+            android:fontFamily="@font/namu"
+            app:layout_constraintStart_toStartOf="@id/iv_movie_poster"
+            app:layout_constraintEnd_toEndOf="@id/iv_movie_poster"
+            app:layout_constraintTop_toBottomOf="@id/iv_movie_poster"
+            android:layout_marginTop="10dp"
+            android:textSize="25dp"
+            android:textColor="@color/main_text_color"/>
 
 
-        <!--        <androidx.core.widget.NestedScrollView-->
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/rv_movie_list"-->
         <!--            android:layout_width="0dp"-->
         <!--            android:layout_height="0dp"-->
         <!--            android:layout_marginTop="5dp"-->
@@ -120,19 +146,10 @@
         <!--            android:overScrollMode="never"-->
         <!--            app:layout_constraintBottom_toBottomOf="parent"-->
         <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintHeight_percent="0.6"-->
         <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/tv_selected_types">-->
-
-        <!--            <LinearLayout-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="match_parent"-->
-        <!--                android:orientation="vertical">-->
-
-
-        <!--            </LinearLayout>-->
-
-
-        <!--        </androidx.core.widget.NestedScrollView>-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/tv_selected_types"-->
+        <!--            app:layout_constraintVertical_bias="0.15" />-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,10 +3,12 @@ package com.mobinity.whattowatch.view
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.mobinity.whattowatch.MyApplication
 import com.mobinity.whattowatch.R
 import com.mobinity.whattowatch.adapter.MovieAdapter
@@ -39,7 +41,7 @@ class FifthActivity : AppCompatActivity() {
 
         setSelectedTypeText(binding)
         setTextAnimation(binding)
-        setRecyclerView(binding)
+        //setRecyclerView(binding)
 
 
         discoverMovie(retrofitService, handler)
@@ -186,27 +188,27 @@ class FifthActivity : AppCompatActivity() {
 
     }
 
-    private fun setRecyclerView(binding: ActivityFifthBinding) {
-        movieAdapter = MovieAdapter(
-            this,
-            ArrayList<MovieDb>()
-        ) {
-
-
-        }
-
-        binding.rvMovieList.adapter = movieAdapter
-        binding.rvMovieList.layoutManager = LinearLayoutManager(this)
-
-        val horizontalLayout = LinearLayoutManager(
-            this,
-            LinearLayoutManager.HORIZONTAL,
-            false
-        )
-
-        binding.rvMovieList.layoutManager = horizontalLayout
-
-    }
+//    private fun setRecyclerView(binding: ActivityFifthBinding) {
+//        movieAdapter = MovieAdapter(
+//            this,
+//            ArrayList<MovieDb>()
+//        ) {
+//
+//
+//        }
+//
+//        binding.rvMovieList.adapter = movieAdapter
+//        binding.rvMovieList.layoutManager = LinearLayoutManager(this)
+//
+//        val horizontalLayout = LinearLayoutManager(
+//            this,
+//            LinearLayoutManager.HORIZONTAL,
+//            false
+//        )
+//
+//        binding.rvMovieList.layoutManager = horizontalLayout
+//
+//    }
 
     private fun discoverMovie(retrofit: Retrofit, handler: CoroutineExceptionHandler) {
 
@@ -266,6 +268,8 @@ class FifthActivity : AppCompatActivity() {
 
             val remoteService = retrofit.create(RemoteService::class.java)
 
+
+
             val response = remoteService.discoverMovie(
                 MyApplication.theMovieDataBaseKey,
                 "ko-KR",
@@ -281,13 +285,18 @@ class FifthActivity : AppCompatActivity() {
 
             val sample = response.body()?.results
 
-            movieAdapter.setData(sample!!)
-            binding.rvMovieList.adapter = movieAdapter
+
+            binding.lavLoading.visibility = View.GONE
+            Glide.with(baseContext).load(RemoteService.MOVIE_POSTER_BASE_URL + response.body()!!.results[0]!!.poster_path).into(binding.ivMoviePoster)
+
+            binding.tvMovieDecription.text = "${response.body()!!.results[0]!!.title}  (${response.body()!!.results[0]!!.release_date.substring(0,4)})"
+//            movieAdapter.setData(sample!!)
+//            binding.rvMovieList.adapter = movieAdapter
 
 
-            for (item in response.body()?.results!!) {
-                println("영화이름: ${item.title}, id: ${item.id}, poster: ${item.poster_path}")
-            }
+//            for (item in response.body()?.results!!) {
+//                println("영화이름: ${item.title}, id: ${item.id}, poster: ${item.poster_path}")
+//            }
 
         }
 
