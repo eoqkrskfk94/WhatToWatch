@@ -19,6 +19,7 @@ import com.mobinity.whattowatch.viewModel.FifthViewModel
 import kotlinx.coroutines.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.random.Random
 
 class FifthActivity : AppCompatActivity() {
 
@@ -46,6 +47,8 @@ class FifthActivity : AppCompatActivity() {
 
         discoverMovie(retrofitService, handler)
 
+        searchAgainBtn()
+
 
 //        val retrofit = Retrofit.Builder()
 //            .baseUrl(RemoteService.BASE_URL)
@@ -71,24 +74,23 @@ class FifthActivity : AppCompatActivity() {
 //        })
 
 
-
-        MainScope().launch(handler) {
-            val retrofit = Retrofit.Builder()
-                .baseUrl(RemoteService.MOVIE_DB_BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-            val remoteService = retrofit.create(RemoteService::class.java)
-            val response = remoteService.getMovieProviders(518068, MyApplication.theMovieDataBaseKey)
-
-            Log.d("TAG", "성공 : ${response.raw()}")
-
-            println(response.body()?.results?.KR?.link)
-
-            for (item in response.body()?.results?.KR?.flatrate!!) {
-                println(item.provider_name)
-                println(item.provider_id)
-            }
-        }
+//        MainScope().launch(handler) {
+//            val retrofit = Retrofit.Builder()
+//                    .baseUrl(RemoteService.MOVIE_DB_BASE_URL)
+//                    .addConverterFactory(GsonConverterFactory.create())
+//                    .build()
+//            val remoteService = retrofit.create(RemoteService::class.java)
+//            val response = remoteService.getMovieProviders(518068, MyApplication.theMovieDataBaseKey)
+//
+//            Log.d("TAG", "성공 : ${response.raw()}")
+//
+//            println(response.body()?.results?.KR?.link)
+//
+//            for (item in response.body()?.results?.KR?.flatrate!!) {
+//                println(item.provider_name)
+//                println(item.provider_id)
+//            }
+//        }
 
 //        MainScope().launch(handler) {
 //            val retrofit = Retrofit.Builder()
@@ -215,15 +217,22 @@ class FifthActivity : AppCompatActivity() {
         discoverMovieJob = MainScope().launch(handler) {
 
 
-            val result1 = getDiscoverMovieResultCount(retrofit)
+            var result1 = getDiscoverMovieResultCount(retrofit)
 //            val result2 = getDiscoverMovieResultCount(retrofit)
 //            val result3 = getDiscoverMovieResultCount(retrofit)
 //            val result4 = getDiscoverMovieResultCount(retrofit)
 //            val result5 = getDiscoverMovieResultCount(retrofit)
 
+
+
+
+            if(result1[0] == 0){
+                while(result1[0] == 0){
+                    result1 = getDiscoverMovieResultCount(retrofit)
+                }
+            }
+
             println(result1)
-
-
 
             getDiscoverMovieResultList(result1, retrofit)
 
@@ -234,62 +243,73 @@ class FifthActivity : AppCompatActivity() {
     }
 
     private suspend fun getDiscoverMovieResultCount(retrofit: Retrofit) =
-        withContext(currentCoroutineContext()) {
+            withContext(currentCoroutineContext()) {
 
-            val remoteService = retrofit.create(RemoteService::class.java)
+                val remoteService = retrofit.create(RemoteService::class.java)
 
 
-            val year = viewModel.getRandomYear(baseContext)?.toInt()
+                val year = viewModel.getRandomYear(baseContext)?.toInt()
 
-            val response = remoteService.discoverMovie(
-                MyApplication.theMovieDataBaseKey,
-                "ko-KR",
-                MyApplication.answer1,
-                MyApplication.answer2,
-                "KR",
-                MyApplication.answer4,
-                year,
-                null
-            )
+                val response = remoteService.discoverMovie(
+                        MyApplication.theMovieDataBaseKey,
+                        "ko-KR",
+                        MyApplication.answer1,
+                        MyApplication.answer2,
+                        "KR",
+                        MyApplication.answer4,
+                        year,
+                        null
+                )
 
-//        Log.d("TAG", "성공 : ${response.raw()} $year")
-//
+                return@withContext listOf(
+                        response.body()?.total_results,
+                        response.body()?.total_pages,
+                        year
+                )
 
-            return@withContext listOf(
-                response.body()?.total_results,
-                response.body()?.total_pages,
-                year
-            )
-
-        }
+            }
 
     private suspend fun getDiscoverMovieResultList(resultCount: List<Int?>, retrofit: Retrofit) =
-        withContext(currentCoroutineContext()) {
+            withContext(currentCoroutineContext()) {
 
-            val remoteService = retrofit.create(RemoteService::class.java)
-
-
-
-            val response = remoteService.discoverMovie(
-                MyApplication.theMovieDataBaseKey,
-                "ko-KR",
-                MyApplication.answer1,
-                MyApplication.answer2,
-                "KR",
-                MyApplication.answer4,
-                resultCount[2],
-                null
-            )
-
-            Log.d("TAG", "성공 : ${response.raw()}")
-
-            val sample = response.body()?.results
+                val remoteService = retrofit.create(RemoteService::class.java)
+                val randomPageNumber = viewModel.getRandomPageNumber(resultCount[1])
+                //val randomPageIndex = viewModel.getRandomPageIndex(resultCount[0]!!, randomPageNumber)
 
 
-            binding.lavLoading.visibility = View.GONE
-            Glide.with(baseContext).load(RemoteService.MOVIE_POSTER_BASE_URL + response.body()!!.results[0]!!.poster_path).into(binding.ivMoviePoster)
+                //println(randomPageIndex)
 
-            binding.tvMovieDecription.text = "${response.body()!!.results[0]!!.title}  (${response.body()!!.results[0]!!.release_date.substring(0,4)})"
+
+                val response = remoteService.discoverMovie(
+                        MyApplication.theMovieDataBaseKey,
+                        "ko-KR",
+                        MyApplication.answer1,
+                        MyApplication.answer2,
+                        "KR",
+                        MyApplication.answer4,
+                        resultCount[2],
+                        randomPageNumber
+                )
+
+                Log.d("TAG", "성공 : ${response.raw()}")
+
+                val sample = response.body()?.results
+
+                var pageIndex = 0
+                val rand = Random(System.nanoTime())
+                if(resultCount[0]!! < 10) pageIndex = (0 until resultCount[0]!!).random(rand)
+                else pageIndex = (0 until 10).random(rand)
+
+
+//                println(randomPageNumber)
+//                println(pageIndex)
+//                println(response.body()?.results!!.size)
+
+
+                binding.lavLoading.visibility = View.GONE
+                Glide.with(baseContext).load(RemoteService.MOVIE_POSTER_BASE_URL + response.body()!!.results[pageIndex]!!.poster_path).into(binding.ivMoviePoster)
+
+                binding.tvMovieDecription.text = "${response.body()!!.results[pageIndex]!!.title}  (${response.body()!!.results[pageIndex]!!.release_date.substring(0, 4)})"
 //            movieAdapter.setData(sample!!)
 //            binding.rvMovieList.adapter = movieAdapter
 
@@ -298,7 +318,18 @@ class FifthActivity : AppCompatActivity() {
 //                println("영화이름: ${item.title}, id: ${item.id}, poster: ${item.poster_path}")
 //            }
 
+            }
+
+
+    private fun searchAgainBtn(){
+
+        binding.btnSearchAgain.setOnClickListener {
+            binding.lavLoading.visibility = View.VISIBLE
+            binding.ivMoviePoster.setImageResource(0)
+            discoverMovie(retrofitService, handler)
         }
+
+    }
 
 
     override fun finish() {

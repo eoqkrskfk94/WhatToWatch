@@ -137,6 +137,18 @@
             android:textColor="@color/main_text_color"/>
 
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_search_again"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/iv_movie_poster"
+            app:layout_constraintEnd_toEndOf="@+id/iv_movie_poster"
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_decription"
+            android:layout_marginTop="10dp"/>
+
+
+
+
         <!--        <androidx.recyclerview.widget.RecyclerView-->
         <!--            android:id="@+id/rv_movie_list"-->
         <!--            android:layout_width="0dp"-->
