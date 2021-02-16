@@ -216,6 +216,10 @@ class FifthActivity : AppCompatActivity() {
 
         discoverMovieJob = MainScope().launch(handler) {
 
+            binding.ivNetflix.visibility = View.GONE
+            binding.ivWatcha.visibility = View.GONE
+            binding.ivWavve.visibility = View.GONE
+
 
             var result1 = getDiscoverMovieResultCount(retrofit)
 //            val result2 = getDiscoverMovieResultCount(retrofit)
@@ -224,18 +228,17 @@ class FifthActivity : AppCompatActivity() {
 //            val result5 = getDiscoverMovieResultCount(retrofit)
 
 
-
-
-            if(result1[0] == 0){
-                while(result1[0] == 0){
+            if (result1[0] == 0) {
+                while (result1[0] == 0) {
                     result1 = getDiscoverMovieResultCount(retrofit)
                 }
             }
 
-            println(result1)
 
-            getDiscoverMovieResultList(result1, retrofit)
+            val movieId = getDiscoverMovieResultList(result1, retrofit)
 
+
+            getMovieProviders(retrofit, movieId)
 
         }
 
@@ -292,7 +295,7 @@ class FifthActivity : AppCompatActivity() {
                 )
 
                 Log.d("TAG", "성공 : ${response.raw()}")
-                
+
 
                 println("page: $randomPageNumber, index: $randomPageIndex, year: ${resultCount[2]}")
 
@@ -301,6 +304,7 @@ class FifthActivity : AppCompatActivity() {
                 Glide.with(baseContext).load(RemoteService.MOVIE_POSTER_BASE_URL + response.body()!!.results[randomPageIndex]!!.poster_path).into(binding.ivMoviePoster)
 
                 binding.tvMovieDecription.text = "${response.body()!!.results[randomPageIndex]!!.title}  (${response.body()!!.results[randomPageIndex]!!.release_date.substring(0, 4)})"
+
 //            movieAdapter.setData(sample!!)
 //            binding.rvMovieList.adapter = movieAdapter
 
@@ -309,10 +313,34 @@ class FifthActivity : AppCompatActivity() {
 //                println("영화이름: ${item.title}, id: ${item.id}, poster: ${item.poster_path}")
 //            }
 
+                return@withContext response.body()!!.results[randomPageIndex]!!.id
+
             }
 
+    private suspend fun getMovieProviders(retrofit: Retrofit, movieId: Int) {
 
-    private fun searchAgainBtn(){
+            val remoteService = retrofit.create(RemoteService::class.java)
+            val response = remoteService.getMovieProviders(movieId, MyApplication.theMovieDataBaseKey)
+
+            Log.d("TAG", "성공 : ${response.raw()}")
+
+            println(response.body()?.results?.KR?.link)
+
+            for (item in response.body()?.results?.KR?.flatrate!!) {
+//                println(item.provider_name)
+//                println(item.provider_id)
+
+                when(item.provider_id){
+                    getString(R.string.netflix).toInt() -> binding.ivNetflix.visibility = View.VISIBLE
+                    getString(R.string.watcha).toInt() -> binding.ivWatcha.visibility = View.VISIBLE
+                    getString(R.string.wavve).toInt() -> binding.ivWavve.visibility = View.VISIBLE
+                }
+            }
+        }
+
+
+
+    private fun searchAgainBtn() {
 
         binding.btnSearchAgain.setOnClickListener {
             binding.lavLoading.visibility = View.VISIBLE
