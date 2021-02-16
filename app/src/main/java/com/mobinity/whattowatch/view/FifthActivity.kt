@@ -292,14 +292,7 @@ class FifthActivity : AppCompatActivity() {
                 )
 
                 Log.d("TAG", "성공 : ${response.raw()}")
-
-                val sample = response.body()?.results
-
-//                var pageIndex = 0
-//                val rand = Random(System.nanoTime())
-//                if(resultCount[0]!! < 10) pageIndex = (0 until resultCount[0]!!).random(rand)
-//                else pageIndex = (0 until 10).random(rand)
-
+                
 
                 println("page: $randomPageNumber, index: $randomPageIndex, year: ${resultCount[2]}")
 

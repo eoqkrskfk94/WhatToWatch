@@ -54,10 +54,10 @@ class FifthViewModel {
         return if(totalNumber < 20) (0 until totalNumber).random(rand)
         else {
 
-            if(page != totalPage) (0 until totalNumber).random(rand)
+            if(page != totalPage) (0 until 20).random(rand)
             else{
 
-                if(totalNumber % 20 == 0) (0 until totalNumber).random(rand)
+                if(totalNumber % 20 == 0) (0 until 20).random(rand)
                 else if(totalNumber % 20 == 1) 0
                 else (0 until (totalNumber % 20)).random(rand)
 

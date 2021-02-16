@@ -103,50 +103,56 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_selected_types"
             app:layout_constraintVertical_bias="0.15"
-            app:layout_constraintHeight_percent="0.5"
             app:layout_constraintWidth_percent="0.7" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lav_loading"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:lottie_rawRes="@raw/loading"
-            app:lottie_loop="true"
-            app:lottie_autoPlay="true"
-            app:layout_constraintHeight_percent="0.3"
-            app:layout_constraintWidth_percent="0.5"
-            app:layout_constraintStart_toStartOf="@id/iv_movie_poster"
+            app:layout_constraintBottom_toBottomOf="@id/iv_movie_poster"
             app:layout_constraintEnd_toEndOf="@id/iv_movie_poster"
+            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintStart_toStartOf="@id/iv_movie_poster"
             app:layout_constraintTop_toTopOf="@id/iv_movie_poster"
-            app:layout_constraintBottom_toBottomOf="@id/iv_movie_poster" />
+            app:layout_constraintWidth_percent="0.5"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading" />
 
         <TextView
             android:id="@+id/tv_movie_decription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="영화 이름 2019"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/namu"
-            app:layout_constraintStart_toStartOf="@id/iv_movie_poster"
-            app:layout_constraintEnd_toEndOf="@id/iv_movie_poster"
-            app:layout_constraintTop_toBottomOf="@id/iv_movie_poster"
-            android:layout_marginTop="10dp"
+            android:textColor="@color/main_text_color"
             android:textSize="25dp"
-            android:textColor="@color/main_text_color"/>
+            app:layout_constraintEnd_toEndOf="@id/iv_movie_poster"
+            app:layout_constraintStart_toStartOf="@id/iv_movie_poster"
+            app:layout_constraintTop_toBottomOf="@id/iv_movie_poster"
+            tools:text="영화 이름 2019" />
 
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_search_again"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/iv_movie_poster"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintHeight_percent="0.08"
+            android:fontFamily="@font/namu"
+            android:text="다음"
+            android:textColor="@color/main_text_color"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/iv_movie_poster"
+            app:layout_constraintStart_toStartOf="@id/iv_movie_poster"
             app:layout_constraintTop_toBottomOf="@id/tv_movie_decription"
-            android:layout_marginTop="10dp"/>
-
-
+            app:strokeColor="@color/main_text_color" />
 
 
         <!--        <androidx.recyclerview.widget.RecyclerView-->
