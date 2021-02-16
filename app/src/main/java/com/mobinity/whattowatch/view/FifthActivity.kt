@@ -274,7 +274,7 @@ class FifthActivity : AppCompatActivity() {
 
                 val remoteService = retrofit.create(RemoteService::class.java)
                 val randomPageNumber = viewModel.getRandomPageNumber(resultCount[1])
-                //val randomPageIndex = viewModel.getRandomPageIndex(resultCount[0]!!, randomPageNumber)
+                val randomPageIndex = viewModel.getRandomPageIndex(resultCount[0]!!, randomPageNumber, resultCount[1])
 
 
                 //println(randomPageIndex)
@@ -295,21 +295,19 @@ class FifthActivity : AppCompatActivity() {
 
                 val sample = response.body()?.results
 
-                var pageIndex = 0
-                val rand = Random(System.nanoTime())
-                if(resultCount[0]!! < 10) pageIndex = (0 until resultCount[0]!!).random(rand)
-                else pageIndex = (0 until 10).random(rand)
+//                var pageIndex = 0
+//                val rand = Random(System.nanoTime())
+//                if(resultCount[0]!! < 10) pageIndex = (0 until resultCount[0]!!).random(rand)
+//                else pageIndex = (0 until 10).random(rand)
 
 
-//                println(randomPageNumber)
-//                println(pageIndex)
-//                println(response.body()?.results!!.size)
+                println("page: $randomPageNumber, index: $randomPageIndex, year: ${resultCount[2]}")
 
 
                 binding.lavLoading.visibility = View.GONE
-                Glide.with(baseContext).load(RemoteService.MOVIE_POSTER_BASE_URL + response.body()!!.results[pageIndex]!!.poster_path).into(binding.ivMoviePoster)
+                Glide.with(baseContext).load(RemoteService.MOVIE_POSTER_BASE_URL + response.body()!!.results[randomPageIndex]!!.poster_path).into(binding.ivMoviePoster)
 
-                binding.tvMovieDecription.text = "${response.body()!!.results[pageIndex]!!.title}  (${response.body()!!.results[pageIndex]!!.release_date.substring(0, 4)})"
+                binding.tvMovieDecription.text = "${response.body()!!.results[randomPageIndex]!!.title}  (${response.body()!!.results[randomPageIndex]!!.release_date.substring(0, 4)})"
 //            movieAdapter.setData(sample!!)
 //            binding.rvMovieList.adapter = movieAdapter
 

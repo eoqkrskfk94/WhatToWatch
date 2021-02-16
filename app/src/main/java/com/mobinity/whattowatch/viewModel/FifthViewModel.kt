@@ -43,27 +43,28 @@ class FifthViewModel {
     fun getRandomPageNumber(totalPage: Int?): Int{
         val rand = Random(System.nanoTime())
 
-        return if(totalPage != 1) (1 until totalPage!!).random(rand)
+        return if(totalPage != 1) (1 .. totalPage!!).random(rand)
         else 1
 
     }
 
-//    fun getRandomPageIndex(totalNumber: Int, page : Int, totalPage: Int?): Int{
-//        val rand = Random(System.nanoTime())
-//
-//        return if(totalNumber < 10) (0 until totalNumber).random(rand)
-//        else if(page != totalPage-1){
-//            return 10
-//        }
-//        else {
-//            val remaining = totalNumber % 10
-//
-//            if(remaining == 0) (0 until 9).random(rand)
-//            else (0 until remaining).random(rand)
-//
-//        }
-//
-//    }
+    fun getRandomPageIndex(totalNumber: Int, page : Int, totalPage: Int?): Int{
+        val rand = Random(System.nanoTime())
+
+        return if(totalNumber < 20) (0 until totalNumber).random(rand)
+        else {
+
+            if(page != totalPage) (0 until totalNumber).random(rand)
+            else{
+
+                if(totalNumber % 20 == 0) (0 until totalNumber).random(rand)
+                else if(totalNumber % 20 == 1) 0
+                else (0 until (totalNumber % 20)).random(rand)
+
+            }
+
+        }
+    }
 
     fun getRandomYear(context: Context): String?{
 
