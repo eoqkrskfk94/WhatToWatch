@@ -10,7 +10,24 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        val intent = Intent(this, FirstActivity::class.java)
-        startActivity(intent)
+        val sharedPreferences = getSharedPreferences("LANGUAGE_SELECT", MODE_PRIVATE)
+        var language = sharedPreferences.getInt("LANGUAGE", 0)
+
+        println(language)
+
+        if(language == 0){
+            val intent = Intent(this, LanguageSelectActivity::class.java)
+            startActivity(intent)
+        }
+        else if(language == 1){
+            val intent = Intent(this, FirstActivity::class.java)
+            startActivity(intent)
+        }
+        else if(language == 2){
+            val intent = Intent(this, FirstActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 }

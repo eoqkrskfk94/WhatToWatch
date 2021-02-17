@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -29,6 +30,8 @@ class FifthActivity : AppCompatActivity() {
     private lateinit var viewModel: FifthViewModel
     private lateinit var movieAdapter: MovieAdapter
     private lateinit var binding: ActivityFifthBinding
+    private lateinit var fadeIn: Animation
+    private lateinit var fadeIn2: Animation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -178,8 +181,8 @@ class FifthActivity : AppCompatActivity() {
 
 
     private fun setTextAnimation(binding: ActivityFifthBinding) {
-        val fadeIn = AnimationUtils.loadAnimation(applicationContext, R.anim.fadein)
-        val fadeIn2 = AnimationUtils.loadAnimation(applicationContext, R.anim.fadein)
+        fadeIn = AnimationUtils.loadAnimation(applicationContext, R.anim.fadein)
+        fadeIn2 = AnimationUtils.loadAnimation(applicationContext, R.anim.fadein)
         fadeIn.duration = 2000
         fadeIn2.duration = 2000
 
@@ -219,6 +222,7 @@ class FifthActivity : AppCompatActivity() {
             binding.ivNetflix.visibility = View.GONE
             binding.ivWatcha.visibility = View.GONE
             binding.ivWavve.visibility = View.GONE
+            binding.tvMovieDecription.text = ""
 
 
             var result1 = getDiscoverMovieResultCount(retrofit)
@@ -304,6 +308,8 @@ class FifthActivity : AppCompatActivity() {
                 Glide.with(baseContext).load(RemoteService.MOVIE_POSTER_BASE_URL + response.body()!!.results[randomPageIndex]!!.poster_path).into(binding.ivMoviePoster)
 
                 binding.tvMovieDecription.text = "${response.body()!!.results[randomPageIndex]!!.title}  (${response.body()!!.results[randomPageIndex]!!.release_date.substring(0, 4)})"
+                fadeIn.duration = 1000
+                binding.tvMovieDecription.startAnimation(fadeIn)
 
 //            movieAdapter.setData(sample!!)
 //            binding.rvMovieList.adapter = movieAdapter

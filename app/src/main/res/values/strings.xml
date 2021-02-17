@@ -4,6 +4,12 @@
     <string name="dont_care_kr">상관없어요</string>
     <string name="dont_care">0</string>
 
+    <!-- 언어 -->
+    <string name="language">LANGUAGE</string>
+    <string name="english_string">english</string>
+    <string name="korean_string">한국어</string>
+
+
     <!-- 영화 장르 (한국어) -->
     <string name="action_kr">액션</string>
     <string name="sf_kr">SF</string>
