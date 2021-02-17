@@ -23,17 +23,21 @@
             android:layout_height="0dp"
             android:layout_marginStart="20dp"
             android:fontFamily="@font/namu"
-            android:onClick="@{() -> viewModel.goBackBtn(tvGoBack)}"
             android:gravity="center"
+            android:onClick="@{() -> viewModel.goBackBtn(tvGoBack)}"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
             android:text="전 질문으로 돌아가기"
             android:textColor="@color/main_text_color"
             android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintHeight_percent="0.045"
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.03" />
+            app:layout_constraintVertical_bias="0.015" />
 
 
         <ImageView
