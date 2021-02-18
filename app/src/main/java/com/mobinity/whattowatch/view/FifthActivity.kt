@@ -223,6 +223,7 @@ class FifthActivity : AppCompatActivity() {
             binding.ivWatcha.visibility = View.GONE
             binding.ivWavve.visibility = View.GONE
             binding.tvMovieDecription.text = ""
+            binding.tvMovieClick.text = ""
 
 
             var result1 = getDiscoverMovieResultCount(retrofit)
@@ -256,6 +257,7 @@ class FifthActivity : AppCompatActivity() {
 
 
                 val year = viewModel.getRandomYear(baseContext)?.toInt()
+
 
                 val response = remoteService.discoverMovie(
                         MyApplication.theMovieDataBaseKey,
@@ -308,8 +310,10 @@ class FifthActivity : AppCompatActivity() {
                 Glide.with(baseContext).load(RemoteService.MOVIE_POSTER_BASE_URL + response.body()!!.results[randomPageIndex]!!.poster_path).into(binding.ivMoviePoster)
 
                 binding.tvMovieDecription.text = "${response.body()!!.results[randomPageIndex]!!.title}  (${response.body()!!.results[randomPageIndex]!!.release_date.substring(0, 4)})"
+                binding.tvMovieClick.text = "영\n화\n\n상\n세\n정\n보\n\n포\n스\n터\n\n클\n릭"
                 fadeIn.duration = 1000
                 binding.tvMovieDecription.startAnimation(fadeIn)
+                binding.tvMovieClick.startAnimation(fadeIn)
 
 //            movieAdapter.setData(sample!!)
 //            binding.rvMovieList.adapter = movieAdapter
@@ -325,25 +329,28 @@ class FifthActivity : AppCompatActivity() {
 
     private suspend fun getMovieProviders(retrofit: Retrofit, movieId: Int) {
 
-            val remoteService = retrofit.create(RemoteService::class.java)
-            val response = remoteService.getMovieProviders(movieId, MyApplication.theMovieDataBaseKey)
+        val remoteService = retrofit.create(RemoteService::class.java)
+        val response = remoteService.getMovieProviders(movieId, MyApplication.theMovieDataBaseKey)
 
+        if (response.isSuccessful) {
             Log.d("TAG", "성공 : ${response.raw()}")
 
-            println(response.body()?.results?.KR?.link)
 
-            for (item in response.body()?.results?.KR?.flatrate!!) {
-//                println(item.provider_name)
-//                println(item.provider_id)
+            if (response.body()?.results?.KR != null) {
+                for (item in response.body()?.results?.KR?.flatrate!!) {
+//                    println(item.provider_name)
+//                    println(item.provider_id)
 
-                when(item.provider_id){
-                    getString(R.string.netflix).toInt() -> binding.ivNetflix.visibility = View.VISIBLE
-                    getString(R.string.watcha).toInt() -> binding.ivWatcha.visibility = View.VISIBLE
-                    getString(R.string.wavve).toInt() -> binding.ivWavve.visibility = View.VISIBLE
+                    when (item.provider_id) {
+                        getString(R.string.netflix).toInt() -> binding.ivNetflix.visibility = View.VISIBLE
+                        getString(R.string.watcha).toInt() -> binding.ivWatcha.visibility = View.VISIBLE
+                        getString(R.string.wavve).toInt() -> binding.ivWavve.visibility = View.VISIBLE
+                    }
                 }
             }
-        }
 
+        }
+    }
 
 
     private fun searchAgainBtn() {

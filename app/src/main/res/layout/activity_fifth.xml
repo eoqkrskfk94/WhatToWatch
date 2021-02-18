@@ -105,6 +105,7 @@
             android:id="@+id/iv_movie_poster"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:onClick="@{() -> viewModel.moviePosterClick(ivMoviePoster)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.5"
@@ -112,6 +113,18 @@
             app:layout_constraintTop_toBottomOf="@id/tv_selected_types"
             app:layout_constraintVertical_bias="0.15"
             app:layout_constraintWidth_percent="0.7" />
+
+
+        <TextView
+            android:id="@+id/tv_movie_click"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:fontFamily="@font/namu"
+            android:textColor="@color/main_text_color"
+            app:layout_constraintStart_toEndOf="@id/iv_movie_poster"
+            app:layout_constraintTop_toTopOf="@id/iv_movie_poster"
+            android:text="영\n화\n\n상\n세\n정\n보\n\n포\n스\n터\n\n클\n릭"/>
 
 
         <ImageView

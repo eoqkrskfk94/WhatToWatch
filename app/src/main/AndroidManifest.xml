@@ -12,9 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WhatToWatch">
+        <activity android:name=".view.MovieDetailActivity"></activity>
         <activity
             android:name=".view.LanguageSelectActivity"
-            android:noHistory="true"></activity>
+            android:noHistory="true" />
         <activity android:name=".view.FifthActivity" />
         <activity android:name=".view.FourthActivity" />
         <activity android:name=".view.ThirdActivity" />

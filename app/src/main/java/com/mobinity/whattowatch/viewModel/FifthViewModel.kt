@@ -9,12 +9,20 @@ import com.mobinity.whattowatch.MyApplication
 import com.mobinity.whattowatch.R
 import com.mobinity.whattowatch.response.RemoteService
 import com.mobinity.whattowatch.view.FirstActivity
+import com.mobinity.whattowatch.view.MovieDetailActivity
 import kotlinx.coroutines.CoroutineExceptionHandler
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.random.Random
 
 class FifthViewModel {
+
+    fun moviePosterClick(view: View) {
+
+        var intent = Intent(view.context, MovieDetailActivity::class.java)
+        view.context.startActivity(intent)
+        (view.context as Activity).overridePendingTransition(R.anim.slide_in_right, R.anim.fix)
+    }
 
 
     fun goBackBtn(view: View){
