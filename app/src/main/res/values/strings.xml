@@ -10,6 +10,22 @@
     <string name="korean_string">한국어</string>
 
 
+    <!-- 영화 장르 (영어) -->
+    <string name="action_en">action</string>
+    <string name="sf_en">SF</string>
+    <string name="drama_en">drama</string>
+    <string name="comedy_en">comedy</string>
+    <string name="thriller_en">thriller</string>
+    <string name="animation_en">animated</string>
+    <string name="horror_en">horror</string>
+    <string name="fantasy_en">fantasy</string>
+    <string name="romance_en">romance</string>
+    <string name="mystery_en">mystery</string>
+    <string name="family_en">family</string>
+    <string name="music_en">music</string>
+    <string name="documentary_en">documentary</string>
+
+
     <!-- 영화 장르 (한국어) -->
     <string name="action_kr">액션</string>
     <string name="sf_kr">SF</string>
@@ -40,7 +56,6 @@
     <string name="music">10402</string>
     <string name="documentary">99</string>
 
-
     <!-- 영화 국가 (한국어) -->
     <string name="korea_kr">한국</string>
     <string name="english_kr">미국 / 영국</string>
@@ -48,6 +63,14 @@
     <string name="france_kr">프랑스</string>
     <string name="china_hongkong_kr">중국 / 홍콩</string>
     <string name="hongkong_kr">홍콩</string>
+
+    <!-- 영화 국가 (영어) -->
+    <string name="korea_en">한국</string>
+    <string name="english_en">미국 / 영국</string>
+    <string name="japan_en">일본</string>
+    <string name="france_en">프랑스</string>
+    <string name="china_hongkong_en">중국 / 홍콩</string>
+    <string name="hongkong_en">홍콩</string>
 
     <!-- 영화 국가 -->
     <string name="korea">ko</string>
