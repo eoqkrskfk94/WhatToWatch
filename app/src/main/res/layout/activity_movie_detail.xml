@@ -42,13 +42,26 @@
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="@id/iv_movie_backdrop"
                     app:layout_constraintEnd_toEndOf="@id/iv_movie_backdrop"
-                    app:layout_constraintHeight_percent="0.7"
+                    app:layout_constraintHeight_percent="0.45"
                     app:layout_constraintStart_toStartOf="@id/iv_movie_backdrop"
                     app:layout_constraintTop_toTopOf="@id/iv_movie_backdrop"
                     app:layout_constraintWidth_percent="0.5"
                     app:lottie_autoPlay="true"
                     app:lottie_loop="true"
                     app:lottie_rawRes="@raw/loading2" />
+
+
+                <ImageView
+                    android:id="@+id/iv_movie_poster"
+                    android:layout_width="0dp"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="204dp"
+                    android:transitionName="transitionImage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.04"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.35" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

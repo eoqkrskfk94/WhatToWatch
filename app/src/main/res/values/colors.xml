@@ -10,4 +10,6 @@
 
     <color name="main_background">#343434</color>
     <color name="main_text_color">#EDEDED</color>
+
+    <color name="transparent">#00EDEDED</color>
 </resources>

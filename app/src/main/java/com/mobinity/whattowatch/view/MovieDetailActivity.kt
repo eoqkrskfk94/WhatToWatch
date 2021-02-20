@@ -42,6 +42,9 @@ class MovieDetailActivity : AppCompatActivity() {
 
 
         val movieId = intent.getIntExtra("movieId", 0)
+        val moviePoster = intent.getStringExtra("moviePoster")
+        Glide.with(baseContext).load(RemoteService.MOVIE_POSTER_BASE_URL + moviePoster).into(binding.ivMoviePoster)
+
 
         println(movieId)
 
@@ -54,9 +57,7 @@ class MovieDetailActivity : AppCompatActivity() {
         movieDetailJob = MainScope().launch {
 
             getMovieDetails(retrofit, movieId, binding)
-
             getMovieImages(retrofit, movieId, binding)
-
 
         }
 
@@ -84,7 +85,6 @@ class MovieDetailActivity : AppCompatActivity() {
             if(response.body()?.backdrops?.size!! > 0){
 
                 Glide.with(baseContext).load(RemoteService.MOVIE_BACKDROP_BASE_URL + response.body()!!.backdrops[0]!!.file_path).into(binding.ivMovieBackdrop)
-
                 binding.ivMovieBackdrop.scaleType = ImageView.ScaleType.CENTER_CROP
 
 //                for(item in response.body()?.backdrops!!){

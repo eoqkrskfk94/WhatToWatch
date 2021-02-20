@@ -1,8 +1,10 @@
 package com.mobinity.whattowatch.viewModel
 
 import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.view.View
 import android.widget.Toast
 import com.mobinity.whattowatch.MyApplication
@@ -17,11 +19,23 @@ import kotlin.random.Random
 
 class FifthViewModel {
 
-    fun moviePosterClick(view: View, movieId: Int) {
+    fun moviePosterClick(view: View, movieId: Int, moviePoster: String) {
 
         var intent = Intent(view.context, MovieDetailActivity::class.java)
         intent.putExtra("movieId", movieId)
+        intent.putExtra("moviePoster", moviePoster)
         view.context.startActivity(intent)
+
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+//            val activityOptions = ActivityOptions.makeSceneTransitionAnimation((view.context) as Activity, view, "moviePoster")
+//            view.context.startActivity(intent, activityOptions.toBundle())
+//        }
+//
+//        else{
+//            view.context.startActivity(intent)
+//        }
+
+
         (view.context as Activity).overridePendingTransition(R.anim.slide_in_right, R.anim.fix)
     }
 

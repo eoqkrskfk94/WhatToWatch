@@ -1,11 +1,15 @@
 package com.mobinity.whattowatch.view
 
+import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -308,8 +312,15 @@ class FifthActivity : AppCompatActivity() {
 
                 binding.lavLoading.visibility = View.GONE
                 Glide.with(baseContext).load(RemoteService.MOVIE_POSTER_BASE_URL + response.body()!!.results[randomPageIndex]!!.poster_path).into(binding.ivMoviePoster)
+                binding.ivMoviePoster.scaleType = ImageView.ScaleType.CENTER_CROP
+                binding.ivMoviePoster.startAnimation(fadeIn)
+
 
                 binding.movieId = response.body()!!.results[randomPageIndex]!!.id
+                binding.moviePoster = response.body()!!.results[randomPageIndex]!!.poster_path
+
+                //moviePosterClick(response.body()!!.results[randomPageIndex]!!.id)
+
                 binding.tvMovieDecription.text = "${response.body()!!.results[randomPageIndex]!!.title}  (${response.body()!!.results[randomPageIndex]!!.release_date.substring(0, 4)})"
                 binding.tvMovieClick.text = "영\n화\n\n상\n세\n정\n보\n\n포\n스\n터\n\n클\n릭"
                 fadeIn.duration = 1000
@@ -351,6 +362,32 @@ class FifthActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    private fun moviePosterClick(movieId: Int){
+
+
+        binding.ivMoviePoster.setOnClickListener {
+
+
+            var intent = Intent(this, MovieDetailActivity::class.java)
+            intent.putExtra("movieId", movieId)
+            //view.context.startActivity(intent)
+
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                val activityOptions = ActivityOptions.makeSceneTransitionAnimation(this, binding.ivMoviePoster, "transitionImage")
+                startActivity(intent, activityOptions.toBundle())
+            }
+
+            else{
+                startActivity(intent)
+            }
+
+        }
+
+
+
+
     }
 
 

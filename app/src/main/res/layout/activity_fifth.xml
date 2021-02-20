@@ -13,6 +13,10 @@
             name="movieId"
             type="Integer" />
 
+        <variable
+            name="moviePoster"
+            type="String" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -105,30 +109,34 @@
             app:layout_constraintTop_toBottomOf="@id/tv_question5" />
 
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_movie_poster"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:onClick="@{() -> viewModel.moviePosterClick(ivMoviePoster, movieId)}"
+            android:onClick="@{() -> viewModel.moviePosterClick(ivMoviePoster, movieId, moviePoster)}"
+            android:transitionName="moviePoster"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_selected_types"
             app:layout_constraintVertical_bias="0.15"
-            app:layout_constraintWidth_percent="0.7" />
+            app:layout_constraintWidth_percent="0.7"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize3Percent" />
 
 
         <TextView
             android:id="@+id/tv_movie_click"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/namu"
+            android:gravity="center"
+            android:text="영\n화\n\n상\n세\n정\n보\n\n포\n스\n터\n\n클\n릭"
             android:textColor="@color/main_text_color"
             app:layout_constraintStart_toEndOf="@id/iv_movie_poster"
-            app:layout_constraintTop_toTopOf="@id/iv_movie_poster"
-            android:text="영\n화\n\n상\n세\n정\n보\n\n포\n스\n터\n\n클\n릭"/>
+            app:layout_constraintTop_toTopOf="@id/iv_movie_poster" />
 
 
         <ImageView
@@ -141,7 +149,7 @@
             app:layout_constraintBottom_toBottomOf="@id/iv_movie_poster"
             app:layout_constraintEnd_toStartOf="@id/iv_netflix"
             app:layout_constraintHeight_percent="0.04"
-            app:layout_constraintHorizontal_bias="0.88"
+            app:layout_constraintHorizontal_bias="0.95"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="@id/iv_movie_poster"
             app:layout_constraintTop_toTopOf="@id/iv_movie_poster"

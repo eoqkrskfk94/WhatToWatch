@@ -12,17 +12,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WhatToWatch">
-        <activity android:name=".view.MovieDetailActivity"></activity>
+
+
+        <activity
+            android:name=".view.MovieDetailActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".view.LanguageSelectActivity"
+            android:screenOrientation="portrait"
             android:noHistory="true" />
-        <activity android:name=".view.FifthActivity" />
-        <activity android:name=".view.FourthActivity" />
-        <activity android:name=".view.ThirdActivity" />
-        <activity android:name=".view.SecondActivity" />
+        <activity
+            android:name=".view.FifthActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.FourthActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.ThirdActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.SecondActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.SplashActivity"
             android:noHistory="true"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +41,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.FirstActivity" />
+        <activity android:name=".view.FirstActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

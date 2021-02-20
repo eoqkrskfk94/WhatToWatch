@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/main_background</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <!-- Splash theme. -->
@@ -23,4 +24,10 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@color/main_background</item>
     </style>
+
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize3Percent" parent="">
+        <item name="cornerSize">3%</item>
+    </style>
+
 </resources>
