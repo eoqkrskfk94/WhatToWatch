@@ -17,9 +17,10 @@ import kotlin.random.Random
 
 class FifthViewModel {
 
-    fun moviePosterClick(view: View) {
+    fun moviePosterClick(view: View, movieId: Int) {
 
         var intent = Intent(view.context, MovieDetailActivity::class.java)
+        intent.putExtra("movieId", movieId)
         view.context.startActivity(intent)
         (view.context as Activity).overridePendingTransition(R.anim.slide_in_right, R.anim.fix)
     }

@@ -309,6 +309,7 @@ class FifthActivity : AppCompatActivity() {
                 binding.lavLoading.visibility = View.GONE
                 Glide.with(baseContext).load(RemoteService.MOVIE_POSTER_BASE_URL + response.body()!!.results[randomPageIndex]!!.poster_path).into(binding.ivMoviePoster)
 
+                binding.movieId = response.body()!!.results[randomPageIndex]!!.id
                 binding.tvMovieDecription.text = "${response.body()!!.results[randomPageIndex]!!.title}  (${response.body()!!.results[randomPageIndex]!!.release_date.substring(0, 4)})"
                 binding.tvMovieClick.text = "영\n화\n\n상\n세\n정\n보\n\n포\n스\n터\n\n클\n릭"
                 fadeIn.duration = 1000

@@ -14,6 +14,7 @@ interface RemoteService {
         var BASE_URL = "https://openapi.naver.com/"
         var MOVIE_DB_BASE_URL = "https://api.themoviedb.org/3/"
         var MOVIE_POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500"
+        var MOVIE_BACKDROP_BASE_URL = "https://image.tmdb.org/t/p/original"
 
     }
 
@@ -70,6 +71,12 @@ interface RemoteService {
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String
     ):Response<MovieProviderResponse>
+
+    @GET("movie/{movie_id}/images")
+    suspend fun getMovieImages(
+            @Path("movie_id") movieId: Int,
+            @Query("api_key") apiKey: String
+    ):Response<MovieImageResponse>
 
 
 
