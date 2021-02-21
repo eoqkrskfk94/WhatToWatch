@@ -10,6 +10,16 @@
     <string name="korean_string">한국어</string>
 
 
+    <!-- 국가 -->
+    <string name="USA">United States of America</string>
+    <string name="Korea">South Korea</string>
+    <string name="Japan">Japan</string>
+    <string name="France">France</string>
+    <string name="China">China</string>
+    <string name="HongKong">Hong Kong</string>
+    <string name="UK">United Kingdom</string>
+
+
     <!-- 영화 장르 (영어) -->
     <string name="action_en">action</string>
     <string name="sf_en">SF</string>
@@ -69,7 +79,7 @@
     <string name="english_en">미국 / 영국</string>
     <string name="japan_en">일본</string>
     <string name="france_en">프랑스</string>
-    <string name="china_hongkong_en">중국 / 홍콩</string>
+    <string name="china_hongkong_en">대만 / 홍콩 / 중국</string>
     <string name="hongkong_en">홍콩</string>
 
     <!-- 영화 국가 -->

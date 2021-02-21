@@ -9,13 +9,19 @@ class MovieDetailResponse {
     var poster_path: String = ""
     var tagline: String? = ""
     var homepage: String = ""
-    var origin_country: String = ""
     var video: Boolean = false
     var runtime: Int? = 0
     lateinit var genres: ArrayList<Genre>
+    lateinit var production_countries: ArrayList<ProductionCountries>
 
     data class Genre(
         var id: Int,
         var name: String
+    )
+
+    data class ProductionCountries(
+            var name: String,
+            var id: Int,
+            var origin_country: String
     )
 }

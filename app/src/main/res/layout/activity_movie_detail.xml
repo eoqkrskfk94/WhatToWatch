@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -27,14 +26,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
                 <ImageView
                     android:id="@+id/iv_movie_backdrop"
                     android:layout_width="0dp"
                     android:layout_height="250dp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:background="@color/gray"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_no_backdrop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/namu"
+                    android:text="미리보기 없음"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="17dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_movie_backdrop"
+                    app:layout_constraintEnd_toEndOf="@id/iv_movie_backdrop"
+                    app:layout_constraintStart_toStartOf="@id/iv_movie_backdrop"
+                    app:layout_constraintTop_toTopOf="@id/iv_movie_backdrop" />
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/lav_loading"
@@ -51,21 +64,49 @@
                     app:lottie_rawRes="@raw/loading2" />
 
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/iv_movie_poster"
                     android:layout_width="0dp"
-                    android:layout_height="180dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="204dp"
                     android:transitionName="transitionImage"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.04"
+                    app:layout_constraintHorizontal_bias="0.03"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.35" />
+                    app:layout_constraintWidth_percent="0.35"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize3Percent"
+                    tools:layout_height="200dp" />
+
+
+                <TextView
+                    android:id="@+id/tv_movie_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/namu"
+                    android:text="영화 제목 (2020)"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="22dp"
+                    app:layout_constraintStart_toEndOf="@+id/iv_movie_poster"
+                    app:layout_constraintTop_toBottomOf="@id/iv_movie_backdrop" />
+
+                <TextView
+                    android:id="@+id/tv_movie_side_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/namu"
+                    android:text="액션/모험/SF · 미국"
+                    android:textColor="@color/main_text_color"
+                    android:textSize="20dp"
+                    app:layout_constraintStart_toEndOf="@+id/iv_movie_poster"
+                    app:layout_constraintTop_toBottomOf="@id/tv_movie_title" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
         </androidx.core.widget.NestedScrollView>

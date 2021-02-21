@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
@@ -26,6 +28,7 @@ class MovieDetailActivity : AppCompatActivity() {
     private lateinit var handler: CoroutineExceptionHandler
     private lateinit var viewModel: MovieDetailViewModel
     private lateinit var retrofit: Retrofit
+    private lateinit var fadeIn: Animation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +36,8 @@ class MovieDetailActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         viewModel = MovieDetailViewModel()
         binding.viewModel = viewModel
+
+        fadeIn = AnimationUtils.loadAnimation(applicationContext, R.anim.fadein)
 
 
         handler = viewModel.getCourotineHandler(this)
@@ -44,9 +49,9 @@ class MovieDetailActivity : AppCompatActivity() {
         val movieId = intent.getIntExtra("movieId", 0)
         val moviePoster = intent.getStringExtra("moviePoster")
         Glide.with(baseContext).load(RemoteService.MOVIE_POSTER_BASE_URL + moviePoster).into(binding.ivMoviePoster)
+        binding.ivMoviePoster.startAnimation(fadeIn)
+        binding.ivMovieBackdrop.scaleType = ImageView.ScaleType.CENTER_CROP
 
-
-        println(movieId)
 
         setMovieDetails(movieId, binding)
     }
@@ -55,10 +60,8 @@ class MovieDetailActivity : AppCompatActivity() {
     private fun setMovieDetails(movieId: Int, binding: ActivityMovieDetailBinding){
 
         movieDetailJob = MainScope().launch {
-
             getMovieDetails(retrofit, movieId, binding)
             getMovieImages(retrofit, movieId, binding)
-
         }
 
     }
@@ -67,6 +70,19 @@ class MovieDetailActivity : AppCompatActivity() {
 
         val remoteService = retrofit.create(RemoteService::class.java)
         val response = remoteService.getMovieDetail(movieId, MyApplication.theMovieDataBaseKey, "ko-KR")
+
+        if(response.isSuccessful){
+
+            binding.tvMovieTitle.text = "${response.body()?.title} (${response.body()?.release_date?.substring(0,4)})"
+
+
+
+            var genres = viewModel.makeGenreString(this, response.body()?.genres!!)
+
+            val sideTitle = "$genres · ${viewModel.makeMovieOriginString(this, response.body()?.production_countries!!)}"
+
+            binding.tvMovieSideTitle.text = sideTitle
+        }
 
 
     }
@@ -93,14 +109,19 @@ class MovieDetailActivity : AppCompatActivity() {
 
             }
 
+            else{
+                binding.tvNoBackdrop.visibility = View.VISIBLE
+            }
+
         }
 
 //        println(response.body()?.backdrops?.get(0)?.file_path)
     }
 
+
+
     @RequiresApi(Build.VERSION_CODES.M)
     private fun setActionBarTransparent(binding: ActivityMovieDetailBinding){
-
 
         binding.actionBar.setBackgroundColor(getColor(R.color.main_background))
         binding.actionBar.background.alpha = 0
