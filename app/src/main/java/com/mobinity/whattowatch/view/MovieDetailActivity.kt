@@ -73,14 +73,15 @@ class MovieDetailActivity : AppCompatActivity() {
 
         if(response.isSuccessful){
 
-            binding.tvMovieTitle.text = "${response.body()?.title} (${response.body()?.release_date?.substring(0,4)})"
+            binding.tvMovieTitle.text = response.body()?.title
 
 
 
             var genres = viewModel.makeGenreString(this, response.body()?.genres!!)
 
-            val sideTitle = "$genres · ${viewModel.makeMovieOriginString(this, response.body()?.production_countries!!)}"
+            val sideTitle = "$genres · ${viewModel.makeMovieOriginString(this, response.body()?.production_countries!!)} · ${response.body()?.release_date?.substring(0,4)}"
 
+            binding.tvMovieSideTitle2.text = response.body()?.tagline
             binding.tvMovieSideTitle.text = sideTitle
         }
 

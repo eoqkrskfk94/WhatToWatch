@@ -69,10 +69,12 @@ class MovieDetailViewModel {
 
     fun makeMovieOriginString(context: Context, productionCountries: ArrayList<MovieDetailResponse.ProductionCountries>): String{
 
-        var originString = "null"
+        var originString = ""
 
 
         if(productionCountries.size > 0){
+
+            println(productionCountries[0].name)
 
 
             when(productionCountries[0].name){
@@ -82,10 +84,16 @@ class MovieDetailViewModel {
                 context.getString(R.string.USA)-> originString = "미국"
                 context.getString(R.string.Korea) -> originString = "대한한국"
                 context.getString(R.string.Japan) -> originString = "일본"
-                context.getString(R.string.France)-> originString = "대만"
+                context.getString(R.string.France)-> originString = "프랑스"
+                context.getString(R.string.Taiwan)-> originString = "대만"
                 context.getString(R.string.China) -> originString = "중국"
                 context.getString(R.string.HongKong) -> originString = "홍콩"
                 context.getString(R.string.UK) -> originString = "영국"
+                context.getString(R.string.Germany) -> originString = "독일"
+                context.getString(R.string.Finland) -> originString = "핀랜드"
+                context.getString(R.string.Canada) -> originString = "캐나다"
+                context.getString(R.string.Australia) -> originString = "호주"
+
 
             }
 
