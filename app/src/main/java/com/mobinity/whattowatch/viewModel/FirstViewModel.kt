@@ -76,6 +76,7 @@ class FirstViewModel {
 
         var intent = Intent(view.context, SecondActivity::class.java)
         view.context.startActivity(intent)
+        (view.context as Activity).finish()
         (view.context as Activity).overridePendingTransition(R.anim.slide_in_right, R.anim.fix)
 
     }

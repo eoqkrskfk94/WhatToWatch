@@ -2,6 +2,7 @@ package com.mobinity.whattowatch.util
 
 import android.app.Activity
 import android.widget.Toast
+import kotlin.system.exitProcess
 
 class BackPressCloseHandler(val activity: Activity?) {
 
@@ -18,6 +19,7 @@ class BackPressCloseHandler(val activity: Activity?) {
         if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
             activity!!.finish()
             myToast.cancel()
+
         }
     }
 
