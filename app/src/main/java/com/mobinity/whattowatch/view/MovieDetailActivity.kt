@@ -83,6 +83,10 @@ class MovieDetailActivity : AppCompatActivity() {
 
             binding.tvMovieSideTitle2.text = response.body()?.tagline
             binding.tvMovieSideTitle.text = sideTitle
+            binding.tvMovieOverview.text = response.body()?.overview
+            binding.tvMovieReleaseDate.text = response.body()?.release_date
+            binding.tvMovieRuntime.text = "${response.body()?.runtime} 분"
+
         }
 
 
