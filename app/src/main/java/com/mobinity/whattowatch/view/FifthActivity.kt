@@ -126,8 +126,6 @@ class FifthActivity : AppCompatActivity() {
         var answer3 = ""
         var answer4 = ""
 
-        println(MyApplication.answer1)
-        println()
 
         when (MyApplication.answer1.toString()) {
 
@@ -236,6 +234,8 @@ class FifthActivity : AppCompatActivity() {
 //            val result4 = getDiscoverMovieResultCount(retrofit)
 //            val result5 = getDiscoverMovieResultCount(retrofit)
 
+            println(result1)
+
 
             if (result1[0] == 0) {
                 while (result1[0] == 0) {
@@ -263,6 +263,7 @@ class FifthActivity : AppCompatActivity() {
                 val year = viewModel.getRandomYear(baseContext)?.toInt()
 
 
+
                 val response = remoteService.discoverMovie(
                         MyApplication.theMovieDataBaseKey,
                         "ko-KR",
@@ -273,6 +274,8 @@ class FifthActivity : AppCompatActivity() {
                         year,
                         null
                 )
+
+                Log.d("TAG", "성공 : ${response.raw()}")
 
                 return@withContext listOf(
                         response.body()?.total_results,
@@ -304,7 +307,7 @@ class FifthActivity : AppCompatActivity() {
                         randomPageNumber
                 )
 
-                Log.d("TAG", "성공 : ${response.raw()}")
+                //Log.d("TAG", "성공 : ${response.raw()}")
 
 
                 println("page: $randomPageNumber, index: $randomPageIndex, year: ${resultCount[2]}")

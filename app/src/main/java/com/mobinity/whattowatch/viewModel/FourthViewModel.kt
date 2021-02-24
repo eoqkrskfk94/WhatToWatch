@@ -11,7 +11,6 @@ class FourthViewModel {
 
     fun selectQuestion4(answer: String, view: View) {
 
-
         when (answer) {
 
             view.context.getString(R.string.dont_care) -> {
