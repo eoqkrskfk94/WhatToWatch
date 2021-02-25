@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.mobinity.whattowatch.R
 import com.mobinity.whattowatch.model.MovieDb
@@ -42,10 +44,16 @@ class MovieAdapter(val context: Context, private val movieList: ArrayList<MovieD
     inner class MovieViewHolder(itemView: View, itemClick: (Int) -> Unit): RecyclerView.ViewHolder(itemView){
 
         private val ivPoster: ImageView = itemView.findViewById(R.id.iv_poster)
+        private val loading: LottieAnimationView = itemView.findViewById(R.id.lav_loading)
+        private val movieDescription: TextView = itemView.findViewById(R.id.tv_movie_decription)
 
         fun onBindViewHolder(item: MovieDb){
             with(itemView){
                 Glide.with(context).load(RemoteService.MOVIE_POSTER_BASE_URL + item.poster_path).into(ivPoster)
+                ivPoster.scaleType = ImageView.ScaleType.CENTER_CROP
+                //loading.visibility = View.GONE
+
+                movieDescription.text = "${item.title}  (${item.release_date.substring(0, 4)})"
             }
         }
 

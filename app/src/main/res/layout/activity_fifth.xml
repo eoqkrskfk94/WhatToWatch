@@ -109,147 +109,147 @@
             app:layout_constraintTop_toBottomOf="@id/tv_question5" />
 
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_movie_poster"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:onClick="@{() -> viewModel.moviePosterClick(ivMoviePoster, movieId, moviePoster)}"
-            android:transitionName="moviePoster"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.52"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_selected_types"
-            app:layout_constraintVertical_bias="0.15"
-            app:layout_constraintWidth_percent="0.7"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize3Percent" />
+<!--        <com.google.android.material.imageview.ShapeableImageView-->
+<!--            android:id="@+id/iv_movie_poster"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:onClick="@{() -> viewModel.moviePosterClick(ivMoviePoster, movieId, moviePoster)}"-->
+<!--            android:transitionName="moviePoster"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHeight_percent="0.52"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tv_selected_types"-->
+<!--            app:layout_constraintVertical_bias="0.15"-->
+<!--            app:layout_constraintWidth_percent="0.7"-->
+<!--            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize3Percent" />-->
 
 
-        <TextView
-            android:id="@+id/tv_movie_click"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/namu"
-            android:gravity="center"
-            android:text="영\n화\n\n상\n세\n정\n보\n\n포\n스\n터\n\n클\n릭"
-            android:textColor="@color/main_text_color"
-            app:layout_constraintStart_toEndOf="@id/iv_movie_poster"
-            app:layout_constraintTop_toTopOf="@id/iv_movie_poster" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_movie_click"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="5dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:fontFamily="@font/namu"-->
+<!--            android:gravity="center"-->
+<!--            android:text="영\n화\n\n상\n세\n정\n보\n\n포\n스\n터\n\n클\n릭"-->
+<!--            android:textColor="@color/main_text_color"-->
+<!--            app:layout_constraintStart_toEndOf="@id/iv_movie_poster"-->
+<!--            app:layout_constraintTop_toTopOf="@id/iv_movie_poster" />-->
 
 
-        <ImageView
-            android:id="@+id/iv_watcha"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:alpha="0.7"
-            android:src="@drawable/watcha_icon"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/iv_movie_poster"
-            app:layout_constraintEnd_toStartOf="@id/iv_netflix"
-            app:layout_constraintHeight_percent="0.04"
-            app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="@id/iv_movie_poster"
-            app:layout_constraintTop_toTopOf="@id/iv_movie_poster"
-            app:layout_constraintVertical_bias="0.97"
-            app:layout_constraintWidth_percent="0.09"
-            tools:visibility="visible" />
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_watcha"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:alpha="0.7"-->
+<!--            android:src="@drawable/watcha_icon"-->
+<!--            android:visibility="gone"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/iv_movie_poster"-->
+<!--            app:layout_constraintEnd_toStartOf="@id/iv_netflix"-->
+<!--            app:layout_constraintHeight_percent="0.04"-->
+<!--            app:layout_constraintHorizontal_bias="0.95"-->
+<!--            app:layout_constraintHorizontal_chainStyle="packed"-->
+<!--            app:layout_constraintStart_toStartOf="@id/iv_movie_poster"-->
+<!--            app:layout_constraintTop_toTopOf="@id/iv_movie_poster"-->
+<!--            app:layout_constraintVertical_bias="0.97"-->
+<!--            app:layout_constraintWidth_percent="0.09"-->
+<!--            tools:visibility="visible" />-->
 
 
-        <ImageView
-            android:id="@+id/iv_netflix"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:alpha="0.7"
-            android:src="@drawable/netflix_icon"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/iv_movie_poster"
-            app:layout_constraintEnd_toStartOf="@id/iv_wavve"
-            app:layout_constraintHeight_percent="0.04"
-            app:layout_constraintStart_toEndOf="@id/iv_watcha"
-            app:layout_constraintTop_toTopOf="@id/iv_movie_poster"
-            app:layout_constraintVertical_bias="0.97"
-            app:layout_constraintWidth_percent="0.09"
-            tools:visibility="visible" />
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_netflix"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:alpha="0.7"-->
+<!--            android:src="@drawable/netflix_icon"-->
+<!--            android:visibility="gone"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/iv_movie_poster"-->
+<!--            app:layout_constraintEnd_toStartOf="@id/iv_wavve"-->
+<!--            app:layout_constraintHeight_percent="0.04"-->
+<!--            app:layout_constraintStart_toEndOf="@id/iv_watcha"-->
+<!--            app:layout_constraintTop_toTopOf="@id/iv_movie_poster"-->
+<!--            app:layout_constraintVertical_bias="0.97"-->
+<!--            app:layout_constraintWidth_percent="0.09"-->
+<!--            tools:visibility="visible" />-->
 
 
-        <ImageView
-            android:id="@+id/iv_wavve"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:alpha="0.7"
-            android:src="@drawable/wavve_icon"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/iv_movie_poster"
-            app:layout_constraintEnd_toEndOf="@id/iv_movie_poster"
-            app:layout_constraintHeight_percent="0.04"
-            app:layout_constraintStart_toEndOf="@id/iv_netflix"
-            app:layout_constraintTop_toTopOf="@id/iv_movie_poster"
-            app:layout_constraintVertical_bias="0.97"
-            app:layout_constraintWidth_percent="0.09"
-            tools:visibility="visible" />
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_wavve"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:alpha="0.7"-->
+<!--            android:src="@drawable/wavve_icon"-->
+<!--            android:visibility="gone"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/iv_movie_poster"-->
+<!--            app:layout_constraintEnd_toEndOf="@id/iv_movie_poster"-->
+<!--            app:layout_constraintHeight_percent="0.04"-->
+<!--            app:layout_constraintStart_toEndOf="@id/iv_netflix"-->
+<!--            app:layout_constraintTop_toTopOf="@id/iv_movie_poster"-->
+<!--            app:layout_constraintVertical_bias="0.97"-->
+<!--            app:layout_constraintWidth_percent="0.09"-->
+<!--            tools:visibility="visible" />-->
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lav_loading"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@id/iv_movie_poster"
-            app:layout_constraintEnd_toEndOf="@id/iv_movie_poster"
-            app:layout_constraintHeight_percent="0.3"
-            app:layout_constraintStart_toStartOf="@id/iv_movie_poster"
-            app:layout_constraintTop_toTopOf="@id/iv_movie_poster"
-            app:layout_constraintWidth_percent="0.5"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/loading2" />
+<!--        <com.airbnb.lottie.LottieAnimationView-->
+<!--            android:id="@+id/lav_loading"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/iv_movie_poster"-->
+<!--            app:layout_constraintEnd_toEndOf="@id/iv_movie_poster"-->
+<!--            app:layout_constraintHeight_percent="0.3"-->
+<!--            app:layout_constraintStart_toStartOf="@id/iv_movie_poster"-->
+<!--            app:layout_constraintTop_toTopOf="@id/iv_movie_poster"-->
+<!--            app:layout_constraintWidth_percent="0.5"-->
+<!--            app:lottie_autoPlay="true"-->
+<!--            app:lottie_loop="true"-->
+<!--            app:lottie_rawRes="@raw/loading2" />-->
 
-        <TextView
-            android:id="@+id/tv_movie_decription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/namu"
-            android:textColor="@color/main_text_color"
-            android:textSize="25dp"
-            app:layout_constraintEnd_toEndOf="@id/iv_movie_poster"
-            app:layout_constraintStart_toStartOf="@id/iv_movie_poster"
-            app:layout_constraintTop_toBottomOf="@id/iv_movie_poster"
-            tools:text="영화 이름 2019" />
-
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_search_again"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:fontFamily="@font/namu"
-            android:text="다음"
-            android:textColor="@color/main_text_color"
-            android:textSize="25dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/iv_movie_poster"
-            app:layout_constraintHeight_percent="0.08"
-            app:layout_constraintStart_toStartOf="@id/iv_movie_poster"
-            app:layout_constraintTop_toBottomOf="@id/tv_movie_decription"
-            app:layout_constraintWidth_percent="0.5"
-            app:strokeColor="@color/main_text_color" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_movie_decription"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:fontFamily="@font/namu"-->
+<!--            android:textColor="@color/main_text_color"-->
+<!--            android:textSize="25dp"-->
+<!--            app:layout_constraintEnd_toEndOf="@id/iv_movie_poster"-->
+<!--            app:layout_constraintStart_toStartOf="@id/iv_movie_poster"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/iv_movie_poster"-->
+<!--            tools:text="영화 이름 2019" />-->
 
 
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:id="@+id/rv_movie_list"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="0dp"-->
-        <!--            android:layout_marginTop="5dp"-->
-        <!--            android:layout_marginBottom="10dp"-->
-        <!--            android:overScrollMode="never"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintHeight_percent="0.6"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/tv_selected_types"-->
-        <!--            app:layout_constraintVertical_bias="0.15" />-->
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/btn_search_again"-->
+<!--            style="?attr/materialButtonOutlinedStyle"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:fontFamily="@font/namu"-->
+<!--            android:text="다음"-->
+<!--            android:textColor="@color/main_text_color"-->
+<!--            android:textSize="25dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/iv_movie_poster"-->
+<!--            app:layout_constraintHeight_percent="0.08"-->
+<!--            app:layout_constraintStart_toStartOf="@id/iv_movie_poster"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tv_movie_decription"-->
+<!--            app:layout_constraintWidth_percent="0.5"-->
+<!--            app:strokeColor="@color/main_text_color" />-->
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_movie_list"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:overScrollMode="never"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_selected_types"
+                    app:layout_constraintVertical_bias="0.15" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
