@@ -20,6 +20,7 @@ import com.mobinity.whattowatch.adapter.MovieAdapter
 import com.mobinity.whattowatch.databinding.ActivityFifthBinding
 import com.mobinity.whattowatch.model.MovieDb
 import com.mobinity.whattowatch.response.RemoteService
+import com.mobinity.whattowatch.util.BackPressCloseHandler
 import com.mobinity.whattowatch.viewModel.FifthViewModel
 import kotlinx.coroutines.*
 import retrofit2.Retrofit
@@ -28,6 +29,7 @@ import kotlin.random.Random
 
 class FifthActivity : AppCompatActivity() {
 
+    private lateinit var backPressCloseHandler: BackPressCloseHandler
     private lateinit var retrofitService: Retrofit
     private lateinit var handler: CoroutineExceptionHandler
     private lateinit var discoverMovieJob: Job
@@ -46,6 +48,7 @@ class FifthActivity : AppCompatActivity() {
 
         retrofitService = viewModel.getRetrofitService()
         handler = viewModel.getCourotineHandler(this)
+        backPressCloseHandler = BackPressCloseHandler(this)
 
         setSelectedTypeText(binding)
         setTextAnimation(binding)
@@ -405,10 +408,7 @@ class FifthActivity : AppCompatActivity() {
     }
 
 
-    override fun finish() {
-        val intent = Intent(this, FirstActivity::class.java)
-        startActivity(intent)
-        super.finish()
-        overridePendingTransition(R.anim.fix, R.anim.slide_out_right)
+    override fun onBackPressed() {
+        backPressCloseHandler.onBackPressed()
     }
 }

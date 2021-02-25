@@ -6,9 +6,12 @@ import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import com.mobinity.whattowatch.R
 import com.mobinity.whattowatch.databinding.ActivitySecondBinding
+import com.mobinity.whattowatch.util.BackPressCloseHandler
 import com.mobinity.whattowatch.viewModel.SecondViewModel
 
 class SecondActivity : AppCompatActivity() {
+    private lateinit var backPressCloseHandler: BackPressCloseHandler
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -16,6 +19,8 @@ class SecondActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = SecondViewModel()
         setTextAnimation(binding)
+
+        backPressCloseHandler = BackPressCloseHandler(this)
 
 
     }
@@ -37,9 +42,7 @@ class SecondActivity : AppCompatActivity() {
         binding.tvQuestion26.startAnimation(fadeIn2)
     }
 
-
-    override fun finish() {
-        super.finish()
-        overridePendingTransition(R.anim.fix, R.anim.slide_out_right)
+    override fun onBackPressed() {
+        backPressCloseHandler.onBackPressed()
     }
 }

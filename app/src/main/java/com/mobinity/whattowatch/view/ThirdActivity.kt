@@ -1,20 +1,27 @@
 package com.mobinity.whattowatch.view
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import com.mobinity.whattowatch.R
 import com.mobinity.whattowatch.databinding.ActivityThirdBinding
+import com.mobinity.whattowatch.util.BackPressCloseHandler
 import com.mobinity.whattowatch.viewModel.ThirdViewModel
 
 class ThirdActivity : AppCompatActivity() {
+    private lateinit var backPressCloseHandler: BackPressCloseHandler
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityThirdBinding = DataBindingUtil.setContentView(this, R.layout.activity_third)
         binding.lifecycleOwner = this
         binding.viewModel = ThirdViewModel()
         setTextAnimation(binding)
+
+        backPressCloseHandler = BackPressCloseHandler(this)
     }
 
     private fun setTextAnimation(binding: ActivityThirdBinding){
@@ -36,8 +43,14 @@ class ThirdActivity : AppCompatActivity() {
     }
 
 
-    override fun finish() {
-        super.finish()
-        overridePendingTransition(R.anim.fix, R.anim.slide_out_right)
+//    override fun finish() {
+//        super.finish()
+//        overridePendingTransition(R.anim.fix, R.anim.slide_out_right)
+//    }
+
+    override fun onBackPressed() {
+        backPressCloseHandler.onBackPressed()
     }
+
+
 }

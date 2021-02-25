@@ -7,15 +7,20 @@ import androidx.databinding.DataBindingUtil
 import com.mobinity.whattowatch.R
 import com.mobinity.whattowatch.databinding.ActivityFourthBinding
 import com.mobinity.whattowatch.databinding.ActivityThirdBinding
+import com.mobinity.whattowatch.util.BackPressCloseHandler
 import com.mobinity.whattowatch.viewModel.FourthViewModel
 
 class FourthActivity : AppCompatActivity() {
+    private lateinit var backPressCloseHandler: BackPressCloseHandler
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityFourthBinding = DataBindingUtil.setContentView(this, R.layout.activity_fourth)
         binding.lifecycleOwner = this
         binding.viewModel = FourthViewModel()
 
+        backPressCloseHandler = BackPressCloseHandler(this)
 
         setTextAnimation(binding)
     }
@@ -36,8 +41,7 @@ class FourthActivity : AppCompatActivity() {
     }
 
 
-    override fun finish() {
-        super.finish()
-        overridePendingTransition(R.anim.fix, R.anim.slide_out_right)
+    override fun onBackPressed() {
+        backPressCloseHandler.onBackPressed()
     }
 }
