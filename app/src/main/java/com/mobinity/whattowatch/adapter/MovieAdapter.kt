@@ -1,19 +1,27 @@
 package com.mobinity.whattowatch.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
+import com.mobinity.whattowatch.MyApplication
 import com.mobinity.whattowatch.R
 import com.mobinity.whattowatch.model.MovieDb
 import com.mobinity.whattowatch.response.RemoteService
 import com.mobinity.whattowatch.util.OrderDiffCallback
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class MovieAdapter(val context: Context, private val movieList: ArrayList<MovieDb>, private val itemClick: (Int) -> Unit): RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
@@ -54,10 +62,59 @@ class MovieAdapter(val context: Context, private val movieList: ArrayList<MovieD
                 //loading.visibility = View.GONE
 
                 movieDescription.text = "${item.title}  (${item.release_date.substring(0, 4)})"
+
+                getMovieProviders(item.id, itemView)
             }
         }
 
+
     }
+
+
+
+
+    private fun getMovieProviders(movieId: Int, itemView: View) {
+
+        val retrofit = Retrofit.Builder()
+                .baseUrl(RemoteService.MOVIE_DB_BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+        val handler = CoroutineExceptionHandler { _, exception ->
+            println("Caught $exception")
+            Toast.makeText(context, "조회중 오류가 발생했습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
+        }
+
+        MainScope().launch(handler) {
+
+            val remoteService = retrofit.create(RemoteService::class.java)
+            val response = remoteService.getMovieProviders(movieId, MyApplication.theMovieDataBaseKey)
+
+            val ivNetflix: ImageView = itemView.findViewById(R.id.iv_netflix)
+            val ivWatcha: ImageView = itemView.findViewById(R.id.iv_watcha)
+            val ivWavve: ImageView = itemView.findViewById(R.id.iv_wavve)
+
+            if (response.isSuccessful) {
+                Log.d("TAG", "성공 : ${response.raw()}")
+
+
+                if (response.body()?.results?.KR != null) {
+                    for (item in response.body()?.results?.KR?.flatrate!!) {
+//                    println(item.provider_name)
+//                    println(item.provider_id)
+
+                        when (item.provider_id) {
+                            context.getString(R.string.netflix).toInt() -> ivNetflix.visibility = View.VISIBLE
+                            context.getString(R.string.watcha).toInt() -> ivWatcha.visibility = View.VISIBLE
+                            context.getString(R.string.wavve).toInt() -> ivWavve.visibility = View.VISIBLE
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
 
 
 }
