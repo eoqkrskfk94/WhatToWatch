@@ -85,6 +85,14 @@ interface RemoteService {
             @Query("language") language: String
     ):Response<MovieCreditResponse>
 
+    @GET("movie/{movie_id}/videos")
+    suspend fun getMovieVideos(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String
+    ):Response<MovieVideoResponse>
+
+
     @GET("person/{person_id}")
     suspend fun getPerson(
             @Path("person_id") personId: Int,

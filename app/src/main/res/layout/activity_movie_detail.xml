@@ -179,17 +179,17 @@
                         <TextView
                             android:id="@+id/tv_movie_overview"
                             android:layout_width="0dp"
-                            android:layout_marginTop="5dp"
                             android:layout_height="wrap_content"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="@id/tv_1"
+                            android:layout_marginTop="5dp"
                             android:layout_marginEnd="15dp"
                             android:textColor="@color/main_text_color"
                             android:textSize="15dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/tv_1"
                             app:layout_constraintTop_toBottomOf="@id/tv_1"
                             tools:text="인피니티 워 이후 절반만 살아남은 지구, 마지막 희망이 된
 어벤져스, 먼저 떠난 그들을 위해 모든 것을 걸었다. 위대한
-어벤져스, 운명을 바꿀 최후의 전쟁이 펼쳐진다."/>
+어벤져스, 운명을 바꿀 최후의 전쟁이 펼쳐진다." />
 
                         <TextView
                             android:id="@+id/tv_2"
@@ -200,55 +200,54 @@
                             android:textColor="@color/main_text_color"
                             android:textSize="20dp"
                             android:textStyle="bold"
-                            app:layout_constraintTop_toBottomOf="@id/tv_movie_overview"
-                            app:layout_constraintStart_toStartOf="@id/tv_movie_overview" />
+                            app:layout_constraintStart_toStartOf="@id/tv_movie_overview"
+                            app:layout_constraintTop_toBottomOf="@id/tv_movie_overview" />
 
                         <TextView
                             android:id="@+id/tv_movie_runtime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:textColor="@color/main_text_color"
+                            android:textSize="15dp"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_2"
                             app:layout_constraintStart_toEndOf="@id/tv_2"
                             app:layout_constraintTop_toTopOf="@id/tv_2"
-                            app:layout_constraintBottom_toBottomOf="@id/tv_2"
-                            android:layout_marginStart="15dp"
-                            android:textSize="15dp"
-                            android:textColor="@color/main_text_color"
-                            tools:text="3시간 1분"/>
+                            tools:text="3시간 1분" />
 
                         <TextView
                             android:id="@+id/tv_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
+                            android:layout_marginBottom="20dp"
                             android:text="개봉일"
                             android:textColor="@color/main_text_color"
                             android:textSize="20dp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            android:layout_marginBottom="20dp"
-                            app:layout_constraintTop_toBottomOf="@id/tv_2"
-                            app:layout_constraintStart_toStartOf="@id/tv_2" />
+                            app:layout_constraintStart_toStartOf="@id/tv_2"
+                            app:layout_constraintTop_toBottomOf="@id/tv_2" />
 
                         <TextView
                             android:id="@+id/tv_movie_release_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:textColor="@color/main_text_color"
+                            android:textSize="15dp"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_3"
                             app:layout_constraintStart_toEndOf="@id/tv_2"
                             app:layout_constraintTop_toTopOf="@id/tv_3"
-                            app:layout_constraintBottom_toBottomOf="@id/tv_3"
-                            android:layout_marginStart="15dp"
-                            android:textSize="15dp"
-                            android:textColor="@color/main_text_color"
-                            tools:text="2019/04/24"/>
+                            tools:text="2019/04/24" />
 
 
-
-
-                   </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_providers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -285,12 +284,56 @@
                             android:layout_marginBottom="10dp"
                             android:foregroundGravity="center"
                             android:orientation="horizontal"
-                            tools:listitem="@layout/card_provider"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/tv_4"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_4"/>
+                            app:layout_constraintStart_toStartOf="@+id/tv_4"
+                            app:layout_constraintTop_toBottomOf="@id/tv_4"
+                            tools:listitem="@layout/card_provider" />
 
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_trailer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:cardBackgroundColor="@color/main_background"
+                    app:cardCornerRadius="0dp"
+                    app:cardElevation="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cv_providers">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tv_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="동영상"
+                            android:textColor="@color/main_text_color"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.05"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.youtube.player.YouTubePlayerView
+                            android:id="@+id/ytpv_trailer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_5" />
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

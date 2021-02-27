@@ -1,19 +1,13 @@
 package com.mobinity.whattowatch.view
 
-import android.app.Activity
-import android.app.ActivityOptions
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.mobinity.whattowatch.MyApplication
 import com.mobinity.whattowatch.R
 import com.mobinity.whattowatch.adapter.MovieAdapter
@@ -24,8 +18,6 @@ import com.mobinity.whattowatch.util.BackPressCloseHandler
 import com.mobinity.whattowatch.viewModel.FifthViewModel
 import kotlinx.coroutines.*
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import kotlin.random.Random
 
 class FifthActivity : AppCompatActivity() {
 
@@ -57,7 +49,7 @@ class FifthActivity : AppCompatActivity() {
 
         discoverMovie(retrofitService, handler)
 
-        //searchAgainBtn()
+        searchAgainBtn()
 
 
 //        val retrofit = Retrofit.Builder()
@@ -202,8 +194,12 @@ class FifthActivity : AppCompatActivity() {
         movieAdapter = MovieAdapter(
             this,
             ArrayList<MovieDb>()
-        ) {
+        ) { movieId, moviePoster ->
 
+            var intent = Intent(this, MovieDetailActivity::class.java)
+            intent.putExtra("movieId", movieId)
+            intent.putExtra("moviePoster", moviePoster)
+            startActivity(intent)
 
         }
 
@@ -232,10 +228,6 @@ class FifthActivity : AppCompatActivity() {
 
 
             var result1 = getDiscoverMovieResultCount(retrofit)
-//            val result2 = getDiscoverMovieResultCount(retrofit)
-//            val result3 = getDiscoverMovieResultCount(retrofit)
-//            val result4 = getDiscoverMovieResultCount(retrofit)
-//            val result5 = getDiscoverMovieResultCount(retrofit)
 
             println(result1)
 
@@ -250,7 +242,6 @@ class FifthActivity : AppCompatActivity() {
             val movieId = getDiscoverMovieResultList(result1, retrofit)
 
 
-            //getMovieProviders(retrofit, movieId)
 
         }
 
@@ -345,30 +336,6 @@ class FifthActivity : AppCompatActivity() {
 
             }
 
-//    private suspend fun getMovieProviders(retrofit: Retrofit, movieId: Int) {
-//
-//        val remoteService = retrofit.create(RemoteService::class.java)
-//        val response = remoteService.getMovieProviders(movieId, MyApplication.theMovieDataBaseKey)
-//
-//        if (response.isSuccessful) {
-//            Log.d("TAG", "성공 : ${response.raw()}")
-//
-//
-//            if (response.body()?.results?.KR != null) {
-//                for (item in response.body()?.results?.KR?.flatrate!!) {
-////                    println(item.provider_name)
-////                    println(item.provider_id)
-//
-//                    when (item.provider_id) {
-//                        getString(R.string.netflix).toInt() -> binding.ivNetflix.visibility = View.VISIBLE
-//                        getString(R.string.watcha).toInt() -> binding.ivWatcha.visibility = View.VISIBLE
-//                        getString(R.string.wavve).toInt() -> binding.ivWavve.visibility = View.VISIBLE
-//                    }
-//                }
-//            }
-//
-//        }
-//    }
 
 //    private fun moviePosterClick(movieId: Int) {
 //
@@ -393,15 +360,15 @@ class FifthActivity : AppCompatActivity() {
 //    }
 
 
-//    private fun searchAgainBtn() {
-//
-//        binding.btnSearchAgain.setOnClickListener {
+    private fun searchAgainBtn() {
+
+        binding.btnSearchAgain.setOnClickListener {
 //            binding.lavLoading.visibility = View.VISIBLE
 //            binding.ivMoviePoster.setImageResource(0)
-//            discoverMovie(retrofitService, handler)
-//        }
-//
-//    }
+            discoverMovie(retrofitService, handler)
+        }
+
+    }
 
 
     override fun onBackPressed() {

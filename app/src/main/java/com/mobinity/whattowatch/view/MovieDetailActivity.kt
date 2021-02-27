@@ -1,18 +1,20 @@
 package com.mobinity.whattowatch.view
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Adapter
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.android.youtube.player.YouTubeBaseActivity
+import com.google.android.youtube.player.YouTubeInitializationResult
+import com.google.android.youtube.player.YouTubePlayer
 import com.mobinity.whattowatch.MyApplication
 import com.mobinity.whattowatch.R
 import com.mobinity.whattowatch.adapter.ProviderAdapter
@@ -27,7 +29,8 @@ import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import java.util.regex.Pattern
 
-class MovieDetailActivity : AppCompatActivity() {
+
+class MovieDetailActivity : YouTubeBaseActivity() {
 
     private lateinit var movieDetailJob: Job
     private lateinit var handler: CoroutineExceptionHandler
@@ -38,8 +41,11 @@ class MovieDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityMovieDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_movie_detail)
-        binding.lifecycleOwner = this
+        val binding: ActivityMovieDetailBinding = DataBindingUtil.setContentView(
+            this,
+            R.layout.activity_movie_detail
+        )
+        //binding.lifecycleOwner = this.l
         viewModel = MovieDetailViewModel()
         binding.viewModel = viewModel
 
@@ -55,7 +61,8 @@ class MovieDetailActivity : AppCompatActivity() {
 
         val movieId = intent.getIntExtra("movieId", 0)
         val moviePoster = intent.getStringExtra("moviePoster")
-        Glide.with(baseContext).load(RemoteService.MOVIE_POSTER_BASE_URL + moviePoster).into(binding.ivMoviePoster)
+        Glide.with(baseContext).load(RemoteService.MOVIE_POSTER_BASE_URL + moviePoster)
+            .into(binding.ivMoviePoster)
         binding.ivMoviePoster.startAnimation(fadeIn)
         binding.ivMovieBackdrop.scaleType = ImageView.ScaleType.CENTER_CROP
 
@@ -71,6 +78,7 @@ class MovieDetailActivity : AppCompatActivity() {
             getMovieImages(retrofit, movieId, binding)
             getMovieCredits(retrofit, movieId, binding)
             getMovieProviders(retrofit, movieId, binding)
+            setYoutubeTrailer(retrofit, movieId, binding)
             //getPersonDetail(retrofit, castIds, binding)
         }
 
@@ -78,8 +86,8 @@ class MovieDetailActivity : AppCompatActivity() {
 
     private fun setRecyclerView(binding: ActivityMovieDetailBinding) {
         providerAdapter = ProviderAdapter(
-                this,
-                ArrayList<MovieProviderItem.MovieProviderDetail>()
+            this,
+            ArrayList<MovieProviderItem.MovieProviderDetail>()
         ) {
 
 
@@ -89,9 +97,9 @@ class MovieDetailActivity : AppCompatActivity() {
         binding.rvProviders.layoutManager = LinearLayoutManager(this)
 
         val horizontalLayout = LinearLayoutManager(
-                this,
-                LinearLayoutManager.HORIZONTAL,
-                false
+            this,
+            LinearLayoutManager.HORIZONTAL,
+            false
         )
 
         binding.rvProviders.layoutManager = horizontalLayout
@@ -99,10 +107,18 @@ class MovieDetailActivity : AppCompatActivity() {
     }
 
 
-    private suspend fun getMovieDetails(retrofit: Retrofit, movieId: Int, binding: ActivityMovieDetailBinding) {
+    private suspend fun getMovieDetails(
+        retrofit: Retrofit,
+        movieId: Int,
+        binding: ActivityMovieDetailBinding
+    ) {
 
         val remoteService = retrofit.create(RemoteService::class.java)
-        val response = remoteService.getMovieDetail(movieId, MyApplication.theMovieDataBaseKey, "ko-KR")
+        val response = remoteService.getMovieDetail(
+            movieId,
+            MyApplication.theMovieDataBaseKey,
+            "ko-KR"
+        )
 
         if (response.isSuccessful) {
 
@@ -111,7 +127,12 @@ class MovieDetailActivity : AppCompatActivity() {
 
             var genres = viewModel.makeGenreString(this, response.body()?.genres!!)
 
-            val sideTitle = "$genres · ${viewModel.makeMovieOriginString(this, response.body()?.production_countries!!)} · ${response.body()?.release_date?.substring(0, 4)}"
+            val sideTitle = "$genres · ${
+                viewModel.makeMovieOriginString(
+                    this,
+                    response.body()?.production_countries!!
+                )
+            } · ${response.body()?.release_date?.substring(0, 4)}"
 
             binding.tvMovieSideTitle2.text = response.body()?.tagline
             binding.tvMovieSideTitle.text = sideTitle
@@ -124,7 +145,11 @@ class MovieDetailActivity : AppCompatActivity() {
 
     }
 
-    private suspend fun getMovieImages(retrofit: Retrofit, movieId: Int, binding: ActivityMovieDetailBinding) {
+    private suspend fun getMovieImages(
+        retrofit: Retrofit,
+        movieId: Int,
+        binding: ActivityMovieDetailBinding
+    ) {
         val remoteService = retrofit.create(RemoteService::class.java)
         val response = remoteService.getMovieImages(movieId, MyApplication.theMovieDataBaseKey)
 
@@ -137,7 +162,11 @@ class MovieDetailActivity : AppCompatActivity() {
 
             if (response.body()?.backdrops?.size!! > 0) {
 
-                Glide.with(baseContext).load(RemoteService.MOVIE_BACKDROP_BASE_URL + response.body()!!.backdrops[0]!!.file_path).into(binding.ivMovieBackdrop)
+                Glide.with(baseContext)
+                    .load(RemoteService.MOVIE_BACKDROP_BASE_URL + response.body()!!.backdrops[0]!!.file_path)
+                    .into(
+                        binding.ivMovieBackdrop
+                    )
                 binding.ivMovieBackdrop.scaleType = ImageView.ScaleType.CENTER_CROP
 
 //                for(item in response.body()?.backdrops!!){
@@ -152,7 +181,11 @@ class MovieDetailActivity : AppCompatActivity() {
 //        println(response.body()?.backdrops?.get(0)?.file_path)
     }
 
-    private suspend fun getMovieProviders(retrofit: Retrofit, movieId: Int, binding: ActivityMovieDetailBinding) {
+    private suspend fun getMovieProviders(
+        retrofit: Retrofit,
+        movieId: Int,
+        binding: ActivityMovieDetailBinding
+    ) {
 
         var providers = ArrayList<MovieProviderItem.MovieProviderDetail>()
 
@@ -165,7 +198,7 @@ class MovieDetailActivity : AppCompatActivity() {
 
             if (response.body()?.results?.KR != null) {
 
-                if(response.body()?.results?.KR?.flatrate!! != null){
+                if (response.body()?.results?.KR?.flatrate!! != null) {
                     providers = response.body()?.results?.KR?.flatrate!!
                     providerAdapter.setData(providers)
                     binding.rvProviders.adapter = providerAdapter
@@ -175,27 +208,37 @@ class MovieDetailActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun getMovieCredits(retrofit: Retrofit, movieId: Int, binding: ActivityMovieDetailBinding): ArrayList<Int> {
+    private suspend fun getMovieCredits(
+        retrofit: Retrofit,
+        movieId: Int,
+        binding: ActivityMovieDetailBinding
+    ): ArrayList<Int> {
 
         val remoteService = retrofit.create(RemoteService::class.java)
-        val response = remoteService.getMovieCredits(movieId, MyApplication.theMovieDataBaseKey, "ko-KR")
+        val response = remoteService.getMovieCredits(
+            movieId,
+            MyApplication.theMovieDataBaseKey,
+            "ko-KR"
+        )
 
         Log.d("TAG", "성공 : ${response.raw()}")
 
         var castIds = ArrayList<Int>()
 
-        for (cast in 0..10) {
-            castIds.add(response.body()?.cast?.get(cast)?.id!!)
-        }
-
-
+//        for (cast in 0..10) {
+//            castIds.add(response.body()?.cast?.get(cast)?.id!!)
+//        }
 
 
         return castIds
 
     }
 
-    private suspend fun getPersonDetail(retrofit: Retrofit, castIds: ArrayList<Int>, binding: ActivityMovieDetailBinding) {
+    private suspend fun getPersonDetail(
+        retrofit: Retrofit,
+        castIds: ArrayList<Int>,
+        binding: ActivityMovieDetailBinding
+    ) {
 
         val p = Pattern.compile("[가-힣]")
 
@@ -203,13 +246,56 @@ class MovieDetailActivity : AppCompatActivity() {
         for (personId in castIds) {
 
             val remoteService = retrofit.create(RemoteService::class.java)
-            val response = remoteService.getPerson(personId, MyApplication.theMovieDataBaseKey, "ko-KR")
+            val response = remoteService.getPerson(
+                personId,
+                MyApplication.theMovieDataBaseKey,
+                "ko-KR"
+            )
 
             for (item in response.body()?.also_known_as!!) {
                 println(item)
             }
 
         }
+    }
+
+    private suspend fun setYoutubeTrailer(
+        retrofit: Retrofit,
+        movieId: Int,
+        binding: ActivityMovieDetailBinding
+    ) {
+
+        val remoteService = retrofit.create(RemoteService::class.java)
+        val response = remoteService.getMovieVideos(
+            movieId,
+            MyApplication.theMovieDataBaseKey,
+            "ko-KR"
+        )
+
+        for (item in response.body()?.results!!) {
+            println(item.key)
+        }
+
+        if(response.body()?.results!!.size > 0){
+
+
+            binding.ytpvTrailer.initialize("AIzaSyDyzl82qS1UxbW38e6LIpyDLXVkaM9qcco",
+                object : YouTubePlayer.OnInitializedListener {
+
+                    override fun onInitializationSuccess(provider: YouTubePlayer.Provider, youTubePlayer: YouTubePlayer, b: Boolean) {
+                        println("ok")
+                        youTubePlayer.cueVideo(response.body()?.results!!.get(0).key)
+                    }
+
+                    override fun onInitializationFailure(provider: YouTubePlayer.Provider, youTubeInitializationResult: YouTubeInitializationResult) {
+                        println("fail")
+                    }
+                })
+
+        }
+
+
+
 
 
     }

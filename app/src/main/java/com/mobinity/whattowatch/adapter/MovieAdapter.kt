@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MovieAdapter(val context: Context, private val movieList: ArrayList<MovieDb>, private val itemClick: (Int) -> Unit): RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MovieAdapter(val context: Context, private val movieList: ArrayList<MovieDb>, private val itemClick: (Int, String) -> Unit): RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieAdapter.MovieViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.movie_list_poster, parent, false)
@@ -49,7 +49,7 @@ class MovieAdapter(val context: Context, private val movieList: ArrayList<MovieD
 
     override fun getItemCount(): Int = movieList.size
 
-    inner class MovieViewHolder(itemView: View, itemClick: (Int) -> Unit): RecyclerView.ViewHolder(itemView){
+    inner class MovieViewHolder(itemView: View, itemClick: (Int, String) -> Unit): RecyclerView.ViewHolder(itemView){
 
         private val ivPoster: ImageView = itemView.findViewById(R.id.iv_poster)
         private val loading: LottieAnimationView = itemView.findViewById(R.id.lav_loading)
@@ -64,6 +64,8 @@ class MovieAdapter(val context: Context, private val movieList: ArrayList<MovieD
                 movieDescription.text = "${item.title}  (${item.release_date.substring(0, 4)})"
 
                 getMovieProviders(item.id, itemView)
+
+                itemView.setOnClickListener { itemClick(item.id, item.poster_path) }
             }
         }
 
