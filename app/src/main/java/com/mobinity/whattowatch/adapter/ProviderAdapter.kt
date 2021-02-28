@@ -64,6 +64,8 @@ class ProviderAdapter(val context: Context, private val providerList: ArrayList<
                     }
                 }
             }
+
+            itemView.setOnClickListener { itemClick(item.provider_id)}
         }
 
     }

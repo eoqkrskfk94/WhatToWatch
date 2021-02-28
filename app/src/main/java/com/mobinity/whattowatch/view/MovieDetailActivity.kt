@@ -1,5 +1,6 @@
 package com.mobinity.whattowatch.view
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -7,8 +8,8 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -88,8 +89,57 @@ class MovieDetailActivity : YouTubeBaseActivity() {
         providerAdapter = ProviderAdapter(
             this,
             ArrayList<MovieProviderItem.MovieProviderDetail>()
-        ) {
+        ) { providerId ->
 
+            println(providerId)
+
+            when(providerId){
+
+                getString(R.string.netflix).toInt() -> {
+
+                    try {
+                        val intent = Intent(Intent.ACTION_SEARCH)
+                        intent.setClassName(
+                            "com.netflix.mediaclient",
+                            "com.netflix.mediaclient.ui.launch.UIWebViewActivity"
+                        )
+                        startActivity(intent)
+                    } catch (e: Exception) {
+                        Toast.makeText(this, "Please install the NetFlix App!", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+
+                getString(R.string.watcha).toInt() -> {
+
+                    try {
+                        val intent = Intent(Intent.ACTION_SEARCH)
+                        intent.setClassName(
+                            "com.frograms.wplay",
+                            "com.frograms.wplay.activity.InitActivity"
+                        )
+                        startActivity(intent)
+                    } catch (e: Exception) {
+                        Toast.makeText(this, "Please install the Watcha App!", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+
+                getString(R.string.wavve).toInt() -> {
+
+                    try {
+                        val intent = Intent(Intent.ACTION_SEARCH)
+                        intent.setClassName(
+                            "kr.co.captv.pooqV2",
+                            "kr.co.captv.pooqV2.main.IntroActivity"
+                        )
+                        startActivity(intent)
+                    } catch (e: Exception) {
+                        Toast.makeText(this, "Please install the wavve App!", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            }
 
         }
 
@@ -282,12 +332,19 @@ class MovieDetailActivity : YouTubeBaseActivity() {
             binding.ytpvTrailer.initialize("AIzaSyDyzl82qS1UxbW38e6LIpyDLXVkaM9qcco",
                 object : YouTubePlayer.OnInitializedListener {
 
-                    override fun onInitializationSuccess(provider: YouTubePlayer.Provider, youTubePlayer: YouTubePlayer, b: Boolean) {
+                    override fun onInitializationSuccess(
+                        provider: YouTubePlayer.Provider,
+                        youTubePlayer: YouTubePlayer,
+                        b: Boolean
+                    ) {
                         println("ok")
                         youTubePlayer.cueVideo(response.body()?.results!!.get(0).key)
                     }
 
-                    override fun onInitializationFailure(provider: YouTubePlayer.Provider, youTubeInitializationResult: YouTubeInitializationResult) {
+                    override fun onInitializationFailure(
+                        provider: YouTubePlayer.Provider,
+                        youTubeInitializationResult: YouTubeInitializationResult
+                    ) {
                         println("fail")
                     }
                 })
