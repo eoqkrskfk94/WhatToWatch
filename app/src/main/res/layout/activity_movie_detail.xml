@@ -256,7 +256,7 @@
                     app:cardElevation="2dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cv_overview">
+                    app:layout_constraintTop_toBottomOf="@+id/cv_casts">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -296,6 +296,54 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_casts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:cardBackgroundColor="@color/main_background"
+                    app:cardCornerRadius="0dp"
+                    app:cardElevation="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cv_overview">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tv_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="출연 / 감독"
+                            android:textColor="@color/main_text_color"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.05"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_casts"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:foregroundGravity="center"
+                            android:orientation="horizontal"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/tv_5"
+                            app:layout_constraintTop_toBottomOf="@id/tv_5" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
                     android:id="@+id/cv_trailer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -303,6 +351,7 @@
                     app:cardBackgroundColor="@color/main_background"
                     app:cardCornerRadius="0dp"
                     app:cardElevation="2dp"
+                    android:layout_marginBottom="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cv_providers">
@@ -312,7 +361,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:id="@+id/tv_5"
+                            android:id="@+id/tv_6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
@@ -330,10 +379,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_5" />
+                            app:layout_constraintTop_toBottomOf="@id/tv_6" />
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -367,6 +417,15 @@
                 android:onClick="@{() -> viewModel.goBackBtn(ivBackArrow)}"
                 android:padding="10dp"
                 android:src="@drawable/back_arrow_icon" />
+
+            <TextView
+                android:id="@+id/tv_movie_title_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                tools:text="영화 제목"
+                android:textSize="20dp"
+                android:textColor="@color/main_text_color"/>
 
 
         </androidx.cardview.widget.CardView>

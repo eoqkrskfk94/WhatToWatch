@@ -18,9 +18,11 @@ import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.mobinity.whattowatch.MyApplication
 import com.mobinity.whattowatch.R
+import com.mobinity.whattowatch.adapter.CastAdapter
 import com.mobinity.whattowatch.adapter.ProviderAdapter
 import com.mobinity.whattowatch.databinding.ActivityMovieDetailBinding
 import com.mobinity.whattowatch.model.MovieProviderItem
+import com.mobinity.whattowatch.response.MovieCreditResponse
 import com.mobinity.whattowatch.response.RemoteService
 import com.mobinity.whattowatch.viewModel.MovieDetailViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -37,6 +39,7 @@ class MovieDetailActivity : YouTubeBaseActivity() {
     private lateinit var handler: CoroutineExceptionHandler
     private lateinit var viewModel: MovieDetailViewModel
     private lateinit var providerAdapter: ProviderAdapter
+    private lateinit var castAdapter: CastAdapter
     private lateinit var retrofit: Retrofit
     private lateinit var fadeIn: Animation
 
@@ -143,8 +146,17 @@ class MovieDetailActivity : YouTubeBaseActivity() {
 
         }
 
+        castAdapter = CastAdapter(
+            this,
+            ArrayList<MovieCreditResponse.Cast>()
+        ){}
+
+
         binding.rvProviders.adapter = providerAdapter
         binding.rvProviders.layoutManager = LinearLayoutManager(this)
+
+        binding.rvCasts.adapter = castAdapter
+        binding.rvCasts.layoutManager = LinearLayoutManager(this)
 
         val horizontalLayout = LinearLayoutManager(
             this,
@@ -152,7 +164,14 @@ class MovieDetailActivity : YouTubeBaseActivity() {
             false
         )
 
+        val horizontalLayout2 = LinearLayoutManager(
+            this,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+
         binding.rvProviders.layoutManager = horizontalLayout
+        binding.rvCasts.layoutManager = horizontalLayout2
 
     }
 
@@ -172,6 +191,7 @@ class MovieDetailActivity : YouTubeBaseActivity() {
 
         if (response.isSuccessful) {
 
+            binding.tvMovieTitle2.text = response.body()?.title
             binding.tvMovieTitle.text = response.body()?.title
 
 
@@ -248,7 +268,7 @@ class MovieDetailActivity : YouTubeBaseActivity() {
 
             if (response.body()?.results?.KR != null) {
 
-                if (response.body()?.results?.KR?.flatrate!! != null) {
+                if (response.body()?.results?.KR?.flatrate != null) {
                     providers = response.body()?.results?.KR?.flatrate!!
                     providerAdapter.setData(providers)
                     binding.rvProviders.adapter = providerAdapter
@@ -262,7 +282,7 @@ class MovieDetailActivity : YouTubeBaseActivity() {
         retrofit: Retrofit,
         movieId: Int,
         binding: ActivityMovieDetailBinding
-    ): ArrayList<Int> {
+    ): ArrayList<MovieCreditResponse.Cast> {
 
         val remoteService = retrofit.create(RemoteService::class.java)
         val response = remoteService.getMovieCredits(
@@ -273,11 +293,35 @@ class MovieDetailActivity : YouTubeBaseActivity() {
 
         Log.d("TAG", "성공 : ${response.raw()}")
 
-        var castIds = ArrayList<Int>()
+        var castIds = ArrayList<MovieCreditResponse.Cast>()
 
-//        for (cast in 0..10) {
-//            castIds.add(response.body()?.cast?.get(cast)?.id!!)
-//        }
+
+
+        if(response.body()?.cast?.size!! > 10){
+
+            for (cast in 0..10) {
+                castIds.add(response.body()?.cast?.get(cast)!!)
+            }
+
+        }
+
+        else{
+            castIds = response.body()?.cast!!
+        }
+
+        for(cast in response.body()?.crew!!){
+
+            if(cast.job == "Director"){
+                println(cast.name)
+                castIds.add(0, MovieCreditResponse.Cast(cast.id, cast.name ,cast.profile_path, cast.job))
+            }
+
+        }
+
+
+        castAdapter.setData(castIds)
+        binding.rvCasts.adapter = castAdapter
+
 
 
         return castIds
@@ -363,6 +407,7 @@ class MovieDetailActivity : YouTubeBaseActivity() {
 
         binding.actionBar.setBackgroundColor(getColor(R.color.main_background))
         binding.actionBar.background.alpha = 0
+        binding.tvMovieTitle2.alpha = 0F
 
         binding.nsvMovieDetail.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             //println("$scrollX $scrollY")
@@ -371,9 +416,11 @@ class MovieDetailActivity : YouTubeBaseActivity() {
                 if (scrollY <= 500) {
                     binding.actionBar.setBackgroundColor(getColor(R.color.main_background))
                     binding.actionBar.background.alpha = (scrollY.toFloat() / 500.0 * 255.0).toInt()
+                    binding.tvMovieTitle2.alpha = (scrollY.toFloat() / 500.0).toFloat()
                 } else {
                     binding.actionBar.setBackgroundColor(getColor(R.color.main_background))
                     binding.actionBar.background.alpha = 255
+                    binding.tvMovieTitle2.alpha = 1F
                 }
             }
         }

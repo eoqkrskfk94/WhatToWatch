@@ -15,6 +15,7 @@ interface RemoteService {
         var MOVIE_DB_BASE_URL = "https://api.themoviedb.org/3/"
         var MOVIE_POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500"
         var MOVIE_BACKDROP_BASE_URL = "https://image.tmdb.org/t/p/original"
+        var MOVIE_CAST_BASE_URL = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2"
 
     }
 
