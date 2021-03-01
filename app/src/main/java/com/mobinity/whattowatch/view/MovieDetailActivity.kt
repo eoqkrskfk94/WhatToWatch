@@ -1,5 +1,6 @@
 package com.mobinity.whattowatch.view
 
+import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -72,6 +73,7 @@ class MovieDetailActivity : YouTubeBaseActivity() {
 
 
         setMovieDetails(movieId, binding)
+
     }
 
 
@@ -87,6 +89,26 @@ class MovieDetailActivity : YouTubeBaseActivity() {
         }
 
     }
+
+    private fun setPopularityProgressBar(binding: ActivityMovieDetailBinding, popularity: Int){
+
+        binding.cpbPopularity.setProgressFormatter { progress, max ->
+            val DEFAULT_PATTERN = "%d%%"
+            String.format(DEFAULT_PATTERN, (progress.toFloat() / max.toFloat() * 100).toInt()) }
+
+        val animator = ValueAnimator.ofInt(0, popularity)
+
+        animator.addUpdateListener { animation ->
+            val progress = animation.animatedValue as Int
+
+            binding.cpbPopularity.progress = progress
+        }
+
+        animator.duration = 2000
+        animator.start()
+
+    }
+
 
     private fun setRecyclerView(binding: ActivityMovieDetailBinding) {
         providerAdapter = ProviderAdapter(
@@ -209,6 +231,7 @@ class MovieDetailActivity : YouTubeBaseActivity() {
             binding.tvMovieOverview.text = response.body()?.overview
             binding.tvMovieReleaseDate.text = response.body()?.release_date
             binding.tvMovieRuntime.text = "${response.body()?.runtime} 분"
+            setPopularityProgressBar(binding, (response.body()?.vote_average?.times(10))?.toInt()!!)
 
         }
 
@@ -313,7 +336,14 @@ class MovieDetailActivity : YouTubeBaseActivity() {
 
             if(cast.job == "Director"){
                 println(cast.name)
-                castIds.add(0, MovieCreditResponse.Cast(cast.id, cast.name ,cast.profile_path, cast.job))
+                castIds.add(
+                    0, MovieCreditResponse.Cast(
+                        cast.id,
+                        cast.name,
+                        cast.profile_path,
+                        cast.job
+                    )
+                )
             }
 
         }

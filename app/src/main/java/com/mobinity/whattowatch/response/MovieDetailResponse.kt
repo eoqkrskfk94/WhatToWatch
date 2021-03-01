@@ -11,6 +11,7 @@ class MovieDetailResponse {
     var homepage: String = ""
     var video: Boolean = false
     var runtime: Int? = 0
+    var vote_average: Float = 0F
     lateinit var genres: ArrayList<Genre>
     lateinit var production_countries: ArrayList<ProductionCountries>
 

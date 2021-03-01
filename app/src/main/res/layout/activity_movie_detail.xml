@@ -48,6 +48,35 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="점수"
+                    android:textSize="13dp"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/main_text_color"
+                    app:layout_constraintStart_toStartOf="@id/cpb_popularity"
+
+                    android:layout_marginBottom="5dp"
+                    app:layout_constraintBottom_toTopOf="@id/cpb_popularity"/>
+
+                <com.dinuscxj.progressbar.CircleProgressBar
+                    android:id="@+id/cpb_popularity"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_movie_backdrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:progress_background_color="@color/dark_green"
+                    app:progress_end_color="@color/green"
+                    app:progress_start_color="@color/green"
+                    app:progress_stroke_cap="round"
+                    app:progress_stroke_width="6dp"
+                    app:progress_style="solid_line"
+                    app:progress_text_color="@color/main_text_color"
+                    app:progress_text_size="15dp" />
+
+                <TextView
                     android:id="@+id/tv_no_backdrop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -348,10 +377,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     app:cardBackgroundColor="@color/main_background"
                     app:cardCornerRadius="0dp"
                     app:cardElevation="2dp"
-                    android:layout_marginBottom="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cv_providers">
@@ -423,9 +452,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                tools:text="영화 제목"
+                android:textColor="@color/main_text_color"
                 android:textSize="20dp"
-                android:textColor="@color/main_text_color"/>
+                tools:text="영화 제목" />
 
 
         </androidx.cardview.widget.CardView>

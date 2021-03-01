@@ -8,5 +8,6 @@ data class MovieDb(
     var release_date: String = "",
     var overview: String = "",
     var original_language: String = "",
-    var runtime: Int = 0
+    var runtime: Int = 0,
+    var vote_average: Float = 0F
 )

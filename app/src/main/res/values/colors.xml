@@ -12,6 +12,8 @@
 
     <color name="main_background">#343434</color>
     <color name="main_text_color">#EDEDED</color>
+    <color name="green">#4ACB6F</color>
+    <color name="dark_green">#1D3D24</color>
 
     <color name="transparent">#00EDEDED</color>
 </resources>
