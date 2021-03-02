@@ -31,6 +31,9 @@ class FifthActivity : AppCompatActivity() {
     private lateinit var fadeIn: Animation
     private lateinit var fadeIn2: Animation
 
+    private  lateinit var yearHashMap: HashMap<Int, Int>
+    private  lateinit var yearHashMapTotal: HashMap<Int, Int>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_fifth)
@@ -41,6 +44,10 @@ class FifthActivity : AppCompatActivity() {
         retrofitService = viewModel.getRetrofitService()
         handler = viewModel.getCourotineHandler(this)
         backPressCloseHandler = BackPressCloseHandler(this)
+
+
+        yearHashMap = viewModel.getYearArray(this)
+        yearHashMapTotal = viewModel.getTotalYearArray(this)
 
         setSelectedTypeText(binding)
         setTextAnimation(binding)
@@ -76,43 +83,8 @@ class FifthActivity : AppCompatActivity() {
 //        })
 
 
-//        MainScope().launch(handler) {
-//            val retrofit = Retrofit.Builder()
-//                    .baseUrl(RemoteService.MOVIE_DB_BASE_URL)
-//                    .addConverterFactory(GsonConverterFactory.create())
-//                    .build()
-//            val remoteService = retrofit.create(RemoteService::class.java)
-//            val response = remoteService.getMovieProviders(518068, MyApplication.theMovieDataBaseKey)
-//
-//            Log.d("TAG", "성공 : ${response.raw()}")
-//
-//            println(response.body()?.results?.KR?.link)
-//
-//            for (item in response.body()?.results?.KR?.flatrate!!) {
-//                println(item.provider_name)
-//                println(item.provider_id)
-//            }
-//        }
-
-//        MainScope().launch(handler) {
-//            val retrofit = Retrofit.Builder()
-//                .baseUrl(RemoteService.MOVIE_DB_BASE_URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build()
-//            val remoteService = retrofit.create(RemoteService::class.java)
-//            val response = remoteService.getMovieDetail(518068, MyApplication.theMovieDataBaseKey, "ko-KR")
-//
-//            Log.d("TAG", "성공 : ${response.raw()}")
-//
-//            println(response.body()?.original_title)
-//
-//            for(genre in response.body()?.genres!!) println("${genre.id}  ${genre.name}")
-//
-//        }
-
 
     }
-
 
     private fun setSelectedTypeText(binding: ActivityFifthBinding) {
 
@@ -239,7 +211,7 @@ class FifthActivity : AppCompatActivity() {
             }
 
 
-            val movieId = getDiscoverMovieResultList(result1, retrofit)
+            getDiscoverMovieResultList(result1, retrofit)
 
 
 
@@ -270,6 +242,8 @@ class FifthActivity : AppCompatActivity() {
 
                 Log.d("TAG", "성공 : ${response.raw()}")
 
+                yearHashMapTotal[year!!] = response.body()?.total_pages!!
+
                 return@withContext listOf(
                         response.body()?.total_results,
                         response.body()?.total_pages,
@@ -283,56 +257,58 @@ class FifthActivity : AppCompatActivity() {
 
                 val remoteService = retrofit.create(RemoteService::class.java)
                 val randomPageNumber = viewModel.getRandomPageNumber(resultCount[1])
-                val randomPageIndex = viewModel.getRandomPageIndex(resultCount[0]!!, randomPageNumber, resultCount[1])
+                val year = resultCount[2]
 
+                println("${yearHashMap[year]}  ${yearHashMapTotal[year]}")
 
-                //println(randomPageIndex)
+                if(yearHashMap[year]!! > yearHashMapTotal[year]!!){
 
-
-                val response = remoteService.discoverMovie(
+                    val response = remoteService.discoverMovie(
                         MyApplication.theMovieDataBaseKey,
                         "ko-KR",
                         MyApplication.answer1,
                         MyApplication.answer2,
                         "KR",
                         MyApplication.answer4,
-                        resultCount[2],
+                        year,
+                        yearHashMap[year]!!
+                    )
+
+                    val sample = response.body()?.results
+                    movieAdapter.setData(sample!!)
+                    binding.rvMovieList.adapter = movieAdapter
+
+
+                    val index = yearHashMap[year!!]
+                    yearHashMap[year!!] = index!! + 1
+
+                }
+
+                else{
+
+                    val response = remoteService.discoverMovie(
+                        MyApplication.theMovieDataBaseKey,
+                        "ko-KR",
+                        MyApplication.answer1,
+                        MyApplication.answer2,
+                        "KR",
+                        MyApplication.answer4,
+                        year,
                         randomPageNumber
-                )
+                    )
 
-                //Log.d("TAG", "성공 : ${response.raw()}")
+                    val sample = response.body()?.results
+                    movieAdapter.setData(sample!!)
+                    binding.rvMovieList.adapter = movieAdapter
+
+                }
 
 
-                println("page: $randomPageNumber, index: $randomPageIndex, year: ${resultCount[2]}")
-
-
-//                binding.lavLoading.visibility = View.GONE
-//                Glide.with(baseContext).load(RemoteService.MOVIE_POSTER_BASE_URL + response.body()!!.results[randomPageIndex]!!.poster_path).into(binding.ivMoviePoster)
-//                binding.ivMoviePoster.scaleType = ImageView.ScaleType.CENTER_CROP
-//                binding.ivMoviePoster.startAnimation(fadeIn)
-//
-//
-//                binding.movieId = response.body()!!.results[randomPageIndex]!!.id
-//                binding.moviePoster = response.body()!!.results[randomPageIndex]!!.poster_path
-//
-//                //moviePosterClick(response.body()!!.results[randomPageIndex]!!.id)
-//
-//                binding.tvMovieDecription.text = "${response.body()!!.results[randomPageIndex]!!.title}  (${response.body()!!.results[randomPageIndex]!!.release_date.substring(0, 4)})"
-//                binding.tvMovieClick.text = "영\n화\n\n상\n세\n정\n보\n\n포\n스\n터\n\n클\n릭"
-//                fadeIn.duration = 1000
-//                binding.tvMovieDecription.startAnimation(fadeIn)
-//                binding.tvMovieClick.startAnimation(fadeIn)
-
-                val sample = response.body()?.results
-                movieAdapter.setData(sample!!)
-                binding.rvMovieList.adapter = movieAdapter
 
 
 //            for (item in response.body()?.results!!) {
 //                println("영화이름: ${item.title}, id: ${item.id}, poster: ${item.poster_path}")
 //            }
-
-                return@withContext response.body()!!.results[randomPageIndex]!!.id
 
             }
 

@@ -129,5 +129,119 @@ class FifthViewModel {
 
     }
 
+    fun getYearArray(context: Context):HashMap<Int, Int> {
+
+        var yearHashMap = HashMap<Int, Int>()
+
+        when(MyApplication.answer3.toString()){
+
+            context.getString(R.string.date2020) -> {
+                yearHashMap[2020] = 1
+                yearHashMap[2021] = 1
+            }
+            context.getString(R.string.date2015) -> {
+                yearHashMap[2015] = 1
+                yearHashMap[2016] = 1
+                yearHashMap[2017] = 1
+                yearHashMap[2018] = 1
+                yearHashMap[2019] = 1
+            }
+            context.getString(R.string.date2010) -> {
+                yearHashMap[2010] = 1
+                yearHashMap[2011] = 1
+                yearHashMap[2012] = 1
+                yearHashMap[2013] = 1
+                yearHashMap[2014] = 1
+            }
+            context.getString(R.string.date2005) -> {
+                yearHashMap[2005] = 1
+                yearHashMap[2006] = 1
+                yearHashMap[2007] = 1
+                yearHashMap[2008] = 1
+                yearHashMap[2009] = 1
+            }
+            context.getString(R.string.date2000) -> {
+                yearHashMap[2000] = 1
+                yearHashMap[2001] = 1
+                yearHashMap[2002] = 1
+                yearHashMap[2003] = 1
+                yearHashMap[2004] = 1
+            }
+            context.getString(R.string.date2000before) ->{
+                yearHashMap[1990] = 1
+                yearHashMap[1991] = 1
+                yearHashMap[1992] = 1
+                yearHashMap[1993] = 1
+                yearHashMap[1994] = 1
+                yearHashMap[1995] = 1
+                yearHashMap[1996] = 1
+                yearHashMap[1997] = 1
+                yearHashMap[1998] = 1
+                yearHashMap[1999] = 1
+
+            }
+
+        }
+
+        return yearHashMap
+    }
+
+    fun getTotalYearArray(context: Context): HashMap<Int, Int>{
+
+        var yearHashMapTotal = HashMap<Int, Int>()
+
+        when(MyApplication.answer3.toString()){
+
+            context.getString(R.string.date2020) -> {
+                yearHashMapTotal[2020] = 0
+                yearHashMapTotal[2021] = 0
+            }
+            context.getString(R.string.date2015) -> {
+                yearHashMapTotal[2015] = 0
+                yearHashMapTotal[2016] = 0
+                yearHashMapTotal[2017] = 0
+                yearHashMapTotal[2018] = 0
+                yearHashMapTotal[2019] = 0
+            }
+            context.getString(R.string.date2010) -> {
+                yearHashMapTotal[2010] = 0
+                yearHashMapTotal[2011] = 0
+                yearHashMapTotal[2012] = 0
+                yearHashMapTotal[2013] = 0
+                yearHashMapTotal[2014] = 0
+            }
+            context.getString(R.string.date2005) -> {
+                yearHashMapTotal[2005] = 0
+                yearHashMapTotal[2006] = 0
+                yearHashMapTotal[2007] = 0
+                yearHashMapTotal[2008] = 0
+                yearHashMapTotal[2009] = 0
+            }
+            context.getString(R.string.date2000) -> {
+                yearHashMapTotal[2000] = 0
+                yearHashMapTotal[2001] = 0
+                yearHashMapTotal[2002] = 0
+                yearHashMapTotal[2003] = 0
+                yearHashMapTotal[2004] = 0
+            }
+            context.getString(R.string.date2000before) ->{
+                yearHashMapTotal[1990] = 0
+                yearHashMapTotal[1991] = 0
+                yearHashMapTotal[1992] = 0
+                yearHashMapTotal[1993] = 0
+                yearHashMapTotal[1994] = 0
+                yearHashMapTotal[1995] = 0
+                yearHashMapTotal[1996] = 0
+                yearHashMapTotal[1997] = 0
+                yearHashMapTotal[1998] = 0
+                yearHashMapTotal[1999] = 0
+
+            }
+
+        }
+        return yearHashMapTotal
+    }
+
+
 
 }
