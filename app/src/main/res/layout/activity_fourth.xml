@@ -101,19 +101,19 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_question4_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/namu"
-                    android:onClick="@{() -> viewModel.selectQuestion4(@string/dont_care, tvQuestion41)}"
-                    android:padding="10dp"
-                    android:text="@string/dont_care_kr"
-                    android:textColor="@color/main_text_color"
-                    android:textSize="30dp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_question4_1"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="50dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:fontFamily="@font/namu"-->
+<!--                    android:onClick="@{() -> viewModel.selectQuestion4(@string/dont_care, tvQuestion41)}"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:text="@string/dont_care_kr"-->
+<!--                    android:textColor="@color/main_text_color"-->
+<!--                    android:textSize="30dp" />-->
 
 
                 <TextView

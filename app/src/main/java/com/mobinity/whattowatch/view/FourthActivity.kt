@@ -34,7 +34,7 @@ class FourthActivity : AppCompatActivity() {
         binding.tvCurrentQuestion.startAnimation(fadeIn)
         binding.tvQuestion4.startAnimation(fadeIn)
 
-        binding.tvQuestion41.startAnimation(fadeIn2)
+        //binding.tvQuestion41.startAnimation(fadeIn2)
         binding.tvQuestion42.startAnimation(fadeIn2)
         binding.tvQuestion43.startAnimation(fadeIn2)
         binding.tvQuestion44.startAnimation(fadeIn2)
