@@ -13,10 +13,12 @@ import com.mobinity.whattowatch.R
 import com.mobinity.whattowatch.adapter.MovieAdapter
 import com.mobinity.whattowatch.databinding.ActivityFifthBinding
 import com.mobinity.whattowatch.model.MovieDb
+import com.mobinity.whattowatch.response.DiscoverMovieResponse
 import com.mobinity.whattowatch.response.RemoteService
 import com.mobinity.whattowatch.util.BackPressCloseHandler
 import com.mobinity.whattowatch.viewModel.FifthViewModel
 import kotlinx.coroutines.*
+import retrofit2.Response
 import retrofit2.Retrofit
 
 class FifthActivity : AppCompatActivity() {
@@ -190,6 +192,8 @@ class FifthActivity : AppCompatActivity() {
 
     private fun discoverMovie(retrofit: Retrofit, handler: CoroutineExceptionHandler) {
 
+        println("test")
+
         discoverMovieJob = MainScope().launch(handler) {
 
 //            binding.ivNetflix.visibility = View.GONE
@@ -228,7 +232,6 @@ class FifthActivity : AppCompatActivity() {
 
                 val year = viewModel.getRandomYear(baseContext)?.toInt()
 
-
                 val response = remoteService.discoverMovie(
                         MyApplication.theMovieDataBaseKey,
                         "ko-KR",
@@ -240,15 +243,23 @@ class FifthActivity : AppCompatActivity() {
                         null
                 )
 
+
+
                 Log.d("TAG", "성공 : ${response.raw()}")
+                println(year)
 
                 yearHashMapTotal[year!!] = response.body()?.total_pages!!
+
 
                 return@withContext listOf(
                         response.body()?.total_results,
                         response.body()?.total_pages,
                         year
                 )
+
+
+
+
 
             }
 

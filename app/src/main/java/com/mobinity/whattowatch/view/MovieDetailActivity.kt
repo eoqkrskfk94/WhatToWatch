@@ -292,6 +292,13 @@ class MovieDetailActivity : YouTubeBaseActivity() {
             if (response.body()?.results?.KR != null) {
 
                 if (response.body()?.results?.KR?.flatrate != null) {
+
+                    for(item in response.body()?.results?.KR?.flatrate!!){
+
+                        println("$movieId, ${item.provider_name}")
+
+                    }
+
                     providers = response.body()?.results?.KR?.flatrate!!
                     providerAdapter.setData(providers)
                     binding.rvProviders.adapter = providerAdapter

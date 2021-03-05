@@ -102,8 +102,8 @@ class MovieAdapter(val context: Context, private val movieList: ArrayList<MovieD
 
                 if (response.body()?.results?.KR != null) {
                     for (item in response.body()?.results?.KR?.flatrate!!) {
-//                    println(item.provider_name)
-//                    println(item.provider_id)
+
+                        println("$movieId, ${item.provider_name}")
 
                         when (item.provider_id) {
                             context.getString(R.string.netflix).toInt() -> ivNetflix.visibility = View.VISIBLE

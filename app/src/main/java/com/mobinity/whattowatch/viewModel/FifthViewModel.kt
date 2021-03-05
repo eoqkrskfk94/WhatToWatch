@@ -96,7 +96,7 @@ class FifthViewModel {
         when (MyApplication.answer3) {
 
             context.getString(R.string.dont_care) -> {
-                return null
+                return (1990..2021).random(rand).toString()
             }
 
             context.getString(R.string.date2020) -> {
@@ -135,6 +135,40 @@ class FifthViewModel {
 
         when(MyApplication.answer3.toString()){
 
+            context.getString(R.string.dont_care) -> {
+                yearHashMap[1990] = 1
+                yearHashMap[1991] = 1
+                yearHashMap[1992] = 1
+                yearHashMap[1993] = 1
+                yearHashMap[1994] = 1
+                yearHashMap[1995] = 1
+                yearHashMap[1996] = 1
+                yearHashMap[1997] = 1
+                yearHashMap[1998] = 1
+                yearHashMap[1999] = 1
+                yearHashMap[2000] = 1
+                yearHashMap[2001] = 1
+                yearHashMap[2002] = 1
+                yearHashMap[2003] = 1
+                yearHashMap[2004] = 1
+                yearHashMap[2005] = 1
+                yearHashMap[2006] = 1
+                yearHashMap[2007] = 1
+                yearHashMap[2008] = 1
+                yearHashMap[2009] = 1
+                yearHashMap[2010] = 1
+                yearHashMap[2011] = 1
+                yearHashMap[2012] = 1
+                yearHashMap[2013] = 1
+                yearHashMap[2014] = 1
+                yearHashMap[2015] = 1
+                yearHashMap[2016] = 1
+                yearHashMap[2017] = 1
+                yearHashMap[2018] = 1
+                yearHashMap[2019] = 1
+                yearHashMap[2020] = 1
+                yearHashMap[2021] = 1
+            }
             context.getString(R.string.date2020) -> {
                 yearHashMap[2020] = 1
                 yearHashMap[2021] = 1
