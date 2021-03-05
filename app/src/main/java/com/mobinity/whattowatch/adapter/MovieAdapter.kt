@@ -53,11 +53,17 @@ class MovieAdapter(val context: Context, private val movieList: ArrayList<MovieD
 
         private val ivPoster: ImageView = itemView.findViewById(R.id.iv_poster)
         private val loading: LottieAnimationView = itemView.findViewById(R.id.lav_loading)
+        private val tvNoPoster: TextView = itemView.findViewById(R.id.tv_no_poster)
         private val movieDescription: TextView = itemView.findViewById(R.id.tv_movie_decription)
 
         fun onBindViewHolder(item: MovieDb){
             with(itemView){
-                Glide.with(context).load(RemoteService.MOVIE_POSTER_BASE_URL + item.poster_path).into(ivPoster)
+
+                if(item.poster_path != null) Glide.with(context).load(RemoteService.MOVIE_POSTER_BASE_URL + item.poster_path).into(ivPoster)
+                else {
+                    tvNoPoster.visibility = View.VISIBLE
+                    loading.visibility = View.GONE
+                }
                 ivPoster.scaleType = ImageView.ScaleType.CENTER_CROP
                 //loading.visibility = View.GONE
 

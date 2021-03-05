@@ -21,6 +21,19 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
+        <TextView
+            android:id="@+id/tv_no_poster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/main_text_color"
+            android:text="미리보기 없음"
+            android:visibility="gone"
+            android:textSize="25dp"
+            android:fontFamily="@font/namu"
+            android:layout_gravity="center"/>
+
+
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lav_loading"
             android:layout_width="150dp"
