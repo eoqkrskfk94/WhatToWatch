@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.mobinity.whattowatch.R
 import com.mobinity.whattowatch.response.MovieCreditResponse
@@ -43,12 +44,18 @@ class CastAdapter(val context: Context, private val castList: ArrayList<MovieCre
         var castName: TextView = itemView.findViewById(R.id.tv_cast_name)
         var castCharacter: TextView = itemView.findViewById(R.id.tv_cast_character)
         var castJob: TextView = itemView.findViewById(R.id.tv_cast_job)
+        var tvNoCastImage: TextView = itemView.findViewById(R.id.tv_no_cast_img)
+        private val loading: LottieAnimationView = itemView.findViewById(R.id.lav_loading)
 
 
         fun onBindViewHolder(item: MovieCreditResponse.Cast){
             with(itemView){
 
-                Glide.with(context).load(RemoteService.MOVIE_CAST_BASE_URL + item.profile_path).into(castImage)
+                if(item.profile_path != null) Glide.with(context).load(RemoteService.MOVIE_CAST_BASE_URL + item.profile_path).into(castImage)
+                else {
+                    loading.visibility = View.GONE
+                    tvNoCastImage.visibility = View.VISIBLE
+                }
                 castName.text = item.name
                 castCharacter.text = item.character
 

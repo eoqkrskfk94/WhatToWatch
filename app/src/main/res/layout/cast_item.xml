@@ -30,6 +30,21 @@
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/loading2" />
 
+        <TextView
+            android:id="@+id/tv_no_cast_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/main_text_color"
+            android:text="미리보기 없음"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:fontFamily="@font/namu"
+            app:layout_constraintStart_toStartOf="@+id/iv_cast"
+            app:layout_constraintEnd_toEndOf="@+id/iv_cast"
+            app:layout_constraintTop_toTopOf="@+id/iv_cast"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_cast"/>
+
+
         <ImageView
             android:id="@+id/iv_cast"
             android:layout_width="0dp"
@@ -42,6 +57,8 @@
             app:layout_constraintVertical_bias="0.0"
             app:layout_constraintVertical_chainStyle="packed"
             tools:src="@drawable/cast_image_sample" />
+
+
 
 
         <TextView
