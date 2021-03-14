@@ -13,13 +13,17 @@ import com.mobinity.whattowatch.R
 import com.mobinity.whattowatch.adapter.MovieAdapter
 import com.mobinity.whattowatch.databinding.ActivityFifthBinding
 import com.mobinity.whattowatch.model.MovieDb
+import com.mobinity.whattowatch.model.MovieItem
 import com.mobinity.whattowatch.response.DiscoverMovieResponse
 import com.mobinity.whattowatch.response.RemoteService
 import com.mobinity.whattowatch.util.BackPressCloseHandler
 import com.mobinity.whattowatch.viewModel.FifthViewModel
 import kotlinx.coroutines.*
+import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class FifthActivity : AppCompatActivity() {
 
@@ -59,31 +63,6 @@ class FifthActivity : AppCompatActivity() {
         discoverMovie(retrofitService, handler)
 
         searchAgainBtn()
-
-
-//        val retrofit = Retrofit.Builder()
-//            .baseUrl(RemoteService.BASE_URL)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//        val api = retrofit.create(RemoteService::class.java)
-//        val callGetSearchNews = api.searchMovieRetorfit(MyApplication.clientId, MyApplication.clientSecret, "avengers")
-//
-//        callGetSearchNews.enqueue(object : Callback<MovieItem> {
-//            override fun onResponse(
-//                call: Call<MovieItem>,
-//                response: Response<MovieItem>
-//            ) {
-//                for(item in response.body()?.items!!){
-//                    println(item.title)
-//                }
-//                Log.d("TAG", "성공 : ${response.raw()}")
-//            }
-//
-//            override fun onFailure(call: Call<MovieItem>, t: Throwable) {
-//                Log.d("TAG", "실패 : $t")
-//            }
-//        })
-
 
 
     }
@@ -246,7 +225,11 @@ class FifthActivity : AppCompatActivity() {
 
 
                 Log.d("TAG", "성공 : ${response.raw()}")
-                println(year)
+
+                println(response.message())
+                println(response.errorBody())
+                println(response.code())
+
 
                 yearHashMapTotal[year!!] = response.body()?.total_pages!!
 
