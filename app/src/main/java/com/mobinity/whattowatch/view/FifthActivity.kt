@@ -60,6 +60,7 @@ class FifthActivity : AppCompatActivity() {
         setRecyclerView(binding)
 
 
+
         discoverMovie(retrofitService, handler)
 
         searchAgainBtn()

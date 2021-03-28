@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "938758182290",
+    "project_id": "whattowatch-306112",
+    "storage_bucket": "whattowatch-306112.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:938758182290:android:0d67228c3f8330a792dd4b",
+        "android_client_info": {
+          "package_name": "com.mobinity.whattowatch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "938758182290-nd5njqbvqud1t8c6n5mrbs5ckoim2ia5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAncT-0VXugq41V7uVYP_wU24P0QuaGSkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "938758182290-nd5njqbvqud1t8c6n5mrbs5ckoim2ia5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
