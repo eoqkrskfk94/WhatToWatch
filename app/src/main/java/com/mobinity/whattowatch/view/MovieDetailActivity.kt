@@ -116,8 +116,6 @@ class MovieDetailActivity : YouTubeBaseActivity() {
             ArrayList<MovieProviderItem.MovieProviderDetail>()
         ) { providerId ->
 
-            println(providerId)
-
             when(providerId){
 
                 getString(R.string.netflix).toInt() -> {
@@ -293,11 +291,11 @@ class MovieDetailActivity : YouTubeBaseActivity() {
 
                 if (response.body()?.results?.KR?.flatrate != null) {
 
-                    for(item in response.body()?.results?.KR?.flatrate!!){
-
-                        println("$movieId, ${item.provider_name}")
-
-                    }
+//                    for(item in response.body()?.results?.KR?.flatrate!!){
+//
+//                        println("$movieId, ${item.provider_name}")
+//
+//                    }
 
                     providers = response.body()?.results?.KR?.flatrate!!
                     providerAdapter.setData(providers)
@@ -418,7 +416,7 @@ class MovieDetailActivity : YouTubeBaseActivity() {
                         youTubePlayer: YouTubePlayer,
                         b: Boolean
                     ) {
-                        println("ok")
+                        println("youtube ok")
                         youTubePlayer.cueVideo(response.body()?.results!!.get(0).key)
                     }
 
@@ -426,16 +424,11 @@ class MovieDetailActivity : YouTubeBaseActivity() {
                         provider: YouTubePlayer.Provider,
                         youTubeInitializationResult: YouTubeInitializationResult
                     ) {
-                        println("fail")
+                        println("youtube fail")
+                        println(youTubeInitializationResult)
                     }
                 })
-
         }
-
-
-
-
-
     }
 
 
